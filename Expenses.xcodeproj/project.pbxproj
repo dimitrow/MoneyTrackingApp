@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */; };
+		1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB8292D612D007A0650 /* ExpensesListView.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C062292A95D300BBDB18 /* ContentView.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
+		1640EAB8292D612D007A0650 /* ExpensesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListView.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C062292A95D300BBDB18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
 				16F4C062292A95D300BBDB18 /* ContentView.swift */,
+				1640EAB8292D612D007A0650 /* ExpensesListView.swift */,
+				1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */,
 				16F4C064292A95D300BBDB18 /* Assets.xcassets */,
 				16F4C066292A95D300BBDB18 /* Preview Content */,
 			);
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */,
+				1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */,
 				16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */,
+				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
