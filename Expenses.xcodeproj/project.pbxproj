@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */; };
 		1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB8292D612D007A0650 /* ExpensesListView.swift */; };
+		1640EABC292FCD07007A0650 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EABB292FCD07007A0650 /* AddExpenseView.swift */; };
+		1640EACD2937BADD007A0650 /* BottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EACC2937BADD007A0650 /* BottomSheet.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C062292A95D300BBDB18 /* ContentView.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
 		1640EAB8292D612D007A0650 /* ExpensesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListView.swift; sourceTree = "<group>"; };
+		1640EABB292FCD07007A0650 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		1640EACC2937BADD007A0650 /* BottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheet.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C062292A95D300BBDB18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +40,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1640EABA292EB79A007A0650 /* ExpensesListScene */ = {
+			isa = PBXGroup;
+			children = (
+				1640EAB8292D612D007A0650 /* ExpensesListView.swift */,
+				1640EABB292FCD07007A0650 /* AddExpenseView.swift */,
+				1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */,
+			);
+			path = ExpensesListScene;
+			sourceTree = "<group>";
+		};
 		16F4C054292A95D200BBDB18 = {
 			isa = PBXGroup;
 			children = (
@@ -57,8 +71,8 @@
 			children = (
 				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
 				16F4C062292A95D300BBDB18 /* ContentView.swift */,
-				1640EAB8292D612D007A0650 /* ExpensesListView.swift */,
-				1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */,
+				1640EACC2937BADD007A0650 /* BottomSheet.swift */,
+				1640EABA292EB79A007A0650 /* ExpensesListScene */,
 				16F4C064292A95D300BBDB18 /* Assets.xcassets */,
 				16F4C066292A95D300BBDB18 /* Preview Content */,
 			);
@@ -145,7 +159,9 @@
 			files = (
 				16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */,
 				1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */,
+				1640EABC292FCD07007A0650 /* AddExpenseView.swift in Sources */,
 				16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */,
+				1640EACD2937BADD007A0650 /* BottomSheet.swift in Sources */,
 				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,21 +294,26 @@
 				DEVELOPMENT_TEAM = 43CRT824P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sensorberg.Expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockyturtle.Expenses;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,21 +328,26 @@
 				DEVELOPMENT_TEAM = 43CRT824P5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sensorberg.Expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockyturtle.Expenses;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

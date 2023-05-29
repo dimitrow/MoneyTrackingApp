@@ -11,15 +11,17 @@ struct ExpenseModel: Identifiable {
 
     var id: UUID = UUID()
     var amount: String
+    var numberAmount: Double
 
     init() {
-        self.amount = String(format: "%.2f", Double.random(in: 0.5 ..< 20.0))
+        self.numberAmount = Double.random(in: 0.5 ..< 20.0)
+        self.amount = String(format: "%.2f", self.numberAmount)
     }
 }
 
 class ExpenseListViewModel: ObservableObject {
 
-    @Published var expense: String = ""
+    @Published var fullExpensesAmount: String = ""
     @Published var expenses: [ExpenseModel]
 
     init() {

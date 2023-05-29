@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @State var isShowingBottomSheet = false
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack{
+
+            Button{
+                withAnimation{
+                    isShowingBottomSheet.toggle()
+                }
+            } label: {
+                Text("Open Bottom Sheet")
+            }
         }
-        .padding()
     }
 }
 
@@ -24,3 +30,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
