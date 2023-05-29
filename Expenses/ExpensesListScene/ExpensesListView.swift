@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-struct ExpensesListView: View {
+struct ExpensesListView<Model: ExpenseListViewModelType>: View {
 
-    @State private var showSheet = false
-    @StateObject var viewModel: ExpenseListViewModel = ExpenseListViewModel()
-    @FocusState var isInputActive: Bool
+    @ObservedObject var viewModel: Model
 
     var body: some View {
         VStack(spacing: 0.0) {
             ZStack{
                 Color(.systemBackground)
                     .edgesIgnoringSafeArea(.bottom)
+                    .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
                 VStack(spacing: 0.0) {
                     Color.white
                         .frame(height: 160)
@@ -28,13 +27,12 @@ struct ExpensesListView: View {
                     }
                 }
             }
-            .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
             ZStack{
                 Color.white
                     .cornerRadius(8, corners: [.topLeft, .topRight])
                     .padding(.top, 2)
                 Button {
-                    showSheet.toggle()
+
                 } label: {
                     Text("Add new")
                         .padding()
@@ -42,16 +40,17 @@ struct ExpensesListView: View {
             }
             .frame(height: 78)
         }
+        .navigationTitle("Expenses")
         .background(.black)
-        .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
-        .ignoresSafeArea(.all,
-                         edges: .all)
+        .ignoresSafeArea(.all, edges: .all)
     }
 }
 
 struct ExpensesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesListView(viewModel: ExpenseListViewModel())
+        NavigationStack {
+            ExpensesListView(viewModel: ExpenseListViewModel())
+        }
     }
 }
 

@@ -19,15 +19,21 @@ struct ExpenseModel: Identifiable {
     }
 }
 
-class ExpenseListViewModel: ObservableObject {
+protocol ExpenseListViewModelOutput {
+
+    var expenses: [ExpenseModel] { get set }
+    var fullExpensesAmount: String { get set }
+}
+
+protocol ExpenseListViewModelType: ExpenseListViewModelOutput, ObservableObject {}
+
+class ExpenseListViewModel: ExpenseListViewModelType {
 
     @Published var fullExpensesAmount: String = ""
     @Published var expenses: [ExpenseModel]
 
     init() {
-
         var exp: [ExpenseModel] = []
-
         for _ in 0...20 {
             exp.append(ExpenseModel())
         }

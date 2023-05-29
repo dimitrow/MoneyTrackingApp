@@ -11,9 +11,7 @@ import SwiftUI
 struct ExpensesApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             ExpensesListView(viewModel: ExpenseListViewModel())
-//            BottomSheet()
         }
     }
 }
