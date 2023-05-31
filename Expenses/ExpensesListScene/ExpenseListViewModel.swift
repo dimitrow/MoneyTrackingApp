@@ -7,22 +7,34 @@
 
 import Foundation
 
-struct ExpenseModel: Identifiable {
+struct Expense: Identifiable {
 
-    var id: UUID = UUID()
+    var id: UUID
     var amount: String
-    var numberAmount: Double
+    var isIncome: Bool
+    var description: String?
 
-    init() {
-        self.numberAmount = Double.random(in: 0.5 ..< 20.0)
-        self.amount = String(format: "%.2f", self.numberAmount)
-    }
+    var timeStamp: Date
+
+    var interval: Interval
+}
+
+struct Interval: Identifiable {
+
+    var id: UUID
+    var amount: Double
+    var interval: Int16
+
+    var startDate: Date
+    var endDate: Date
+
+    var expenses: [Expense]
 }
 
 protocol ExpenseListViewModelOutput {
 
-    var expenses: [ExpenseModel] { get set }
     var fullExpensesAmount: String { get set }
+    var currentInterval: Interval? { get }
 }
 
 protocol ExpenseListViewModelType: ExpenseListViewModelOutput, ObservableObject {}
@@ -30,13 +42,12 @@ protocol ExpenseListViewModelType: ExpenseListViewModelOutput, ObservableObject 
 class ExpenseListViewModel: ExpenseListViewModelType {
 
     @Published var fullExpensesAmount: String = ""
-    @Published var expenses: [ExpenseModel]
+    @Published var currentInterval: Interval?
 
-    init() {
-        var exp: [ExpenseModel] = []
-        for _ in 0...20 {
-            exp.append(ExpenseModel())
-        }
-        expenses = exp
+    private let storageService: StorageServiceType
+
+    init(storageService: StorageServiceType) {
+        self.storageService = storageService
+        self.currentInterval = self.storageService.fetchCurrentInterval()
     }
 }

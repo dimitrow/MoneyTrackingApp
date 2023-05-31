@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ExpenseEntity" representedClassName="ExpenseEntity" syncable="YES" codeGenerationType="class">
+    <entity name="ExpenseEntity" representedClassName="ExpenseEntity" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isIncome" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="recordDescription" optional="YES" attributeType="String"/>
@@ -8,12 +8,13 @@
         <attribute name="timeStamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="interval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IntervalEntity" inverseName="expenses" inverseEntity="IntervalEntity"/>
     </entity>
-    <entity name="IntervalEntity" representedClassName="IntervalEntity" syncable="YES" codeGenerationType="class">
+    <entity name="IntervalEntity" representedClassName="IntervalEntity" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="interval" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="intervalID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="timeStamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="interval" inverseEntity="ExpenseEntity"/>
     </entity>
 </model>

@@ -11,7 +11,7 @@ import SwiftUI
 struct ExpensesApp: App {
     var body: some Scene {
         WindowGroup {
-            ExpensesListView(viewModel: ExpenseListViewModel())
+            ExpensesListView(viewModel: ExpenseListViewModel(storageService: StorageService()))
         }
     }
 }
