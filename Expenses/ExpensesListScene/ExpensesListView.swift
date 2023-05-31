@@ -12,7 +12,7 @@ struct ExpensesListView<Model: ExpenseListViewModelType>: View {
     @ObservedObject var viewModel: Model
 
     @State var bottomHeight: CGFloat = 88.0
-
+    @State var isInputMinimized: Bool = true
     var body: some View {
         VStack(spacing: 0.0) {
             ZStack{
@@ -31,8 +31,20 @@ struct ExpensesListView<Model: ExpenseListViewModelType>: View {
 //                            }
 //                        }
                     } else {
-                        EmptyDataView()
-//                        Text("Ask to create interval")
+                        Text("Ask to create interval")
+//                            .padding(.bottom, 80.0)
+                        Button {
+                            viewModel.createNewInterval()
+                        } label: {
+                            Text("Add new Interval")
+                                .padding()
+                        }
+                        Button {
+                            viewModel.fetchIntervals()
+                        } label: {
+                            Text("fetch")
+                                .padding()
+                        }
                     }
                 }
             }
@@ -41,8 +53,9 @@ struct ExpensesListView<Model: ExpenseListViewModelType>: View {
                     .cornerRadius(8, corners: [.topLeft, .topRight])
                     .padding(.top, 2)
                 Button {
-                    withAnimation {
-                        bottomHeight = 320
+                    withAnimation(.interactiveSpring(response: 0.3, dampingFraction: 0.7)) {
+                        isInputMinimized.toggle()
+                        bottomHeight = isInputMinimized ? 88 : 320
                     }
                 } label: {
                     Text("Add new")
@@ -60,9 +73,11 @@ struct ExpensesListView<Model: ExpenseListViewModelType>: View {
 
 struct ExpensesListView_Previews: PreviewProvider {
 
+    static var storageService = StorageService(storageManager: StorageManager.shared,
+                                        storageMapper: StorageMapper())
     static var previews: some View {
         NavigationStack {
-            ExpensesListView(viewModel: ExpenseListViewModel(storageService: StorageService()))
+            ExpensesListView(viewModel: ExpenseListViewModel(storageService: storageService))
         }
     }
 }

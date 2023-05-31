@@ -19,7 +19,7 @@
 		167A0AC02A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABC2A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift */; };
 		167A0AC12A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABD2A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift */; };
 		167A0AC22A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */; };
-		167A0AC72A277C6F009AA0B6 /* ModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC62A277C6F009AA0B6 /* ModelMapper.swift */; };
+		167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C062292A95D300BBDB18 /* ContentView.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
@@ -39,7 +39,7 @@
 		167A0ABC2A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		167A0ABD2A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntervalEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntervalEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		167A0AC62A277C6F009AA0B6 /* ModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMapper.swift; sourceTree = "<group>"; };
+		167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMapper.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C062292A95D300BBDB18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 				167A0AB72A273DDA009AA0B6 /* BaseDataModel.swift */,
 				167A0AB92A273E74009AA0B6 /* StorageManager.swift */,
 				167A0AB22A25E5F8009AA0B6 /* StorageService.swift */,
-				167A0AC62A277C6F009AA0B6 /* ModelMapper.swift */,
+				167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 				167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */,
 				16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */,
 				167A0AC12A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift in Sources */,
-				167A0AC72A277C6F009AA0B6 /* ModelMapper.swift in Sources */,
+				167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */,
 				167A0ABA2A273E74009AA0B6 /* StorageManager.swift in Sources */,
 				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,
 				167A0AB32A25E5F8009AA0B6 /* StorageService.swift in Sources */,

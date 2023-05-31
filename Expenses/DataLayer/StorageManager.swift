@@ -7,10 +7,13 @@
 
 import CoreData
 
-class StorageManager {
+protocol StorageManagerType {
+    func save()
+}
+
+class StorageManager: StorageManagerType {
 
     let persistentContainer: NSPersistentContainer
-
     static let shared = StorageManager()
 
     var viewContext: NSManagedObjectContext {
@@ -18,15 +21,20 @@ class StorageManager {
     }
 
     private init() {
-
         persistentContainer = NSPersistentContainer(name: "DataModel")
         persistentContainer.loadPersistentStores { (description, error) in
             if let error = error {
                 fatalError("Failed to initialize Core Data \(error)")
             }
         }
+    }
 
-        let directories = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        print(directories[0])
+    func save() {
+        do {
+            try viewContext.save()
+        } catch {
+            print(error)
+            viewContext.rollback()
+        }
     }
 }

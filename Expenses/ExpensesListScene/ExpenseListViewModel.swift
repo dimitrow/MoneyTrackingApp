@@ -24,11 +24,15 @@ struct Interval: Identifiable {
     var id: UUID
     var amount: Double
     var interval: Int16
+    var timeStamp: Date
 
-    var startDate: Date
-    var endDate: Date
+    var expenses: [Expense]?
+}
 
-    var expenses: [Expense]
+protocol ExpenseListViewModelInput {
+
+    func createNewInterval()
+    func fetchIntervals()
 }
 
 protocol ExpenseListViewModelOutput {
@@ -37,7 +41,9 @@ protocol ExpenseListViewModelOutput {
     var currentInterval: Interval? { get }
 }
 
-protocol ExpenseListViewModelType: ExpenseListViewModelOutput, ObservableObject {}
+protocol ExpenseListViewModelType: ExpenseListViewModelInput,
+                                   ExpenseListViewModelOutput,
+                                   ObservableObject {}
 
 class ExpenseListViewModel: ExpenseListViewModelType {
 
@@ -49,5 +55,18 @@ class ExpenseListViewModel: ExpenseListViewModelType {
     init(storageService: StorageServiceType) {
         self.storageService = storageService
         self.currentInterval = self.storageService.fetchCurrentInterval()
+    }
+
+    func createNewInterval() {
+
+        let interval = Interval(id: UUID(),
+                                amount: 30000.0,
+                                interval: 30,
+                                timeStamp: Date())
+        storageService.createInterval(interval)
+    }
+
+    func fetchIntervals() {
+        _ = storageService.fetchAllIntervals()
     }
 }

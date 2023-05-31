@@ -8,7 +8,6 @@
 import CoreData
 
 protocol BaseDataModel where Self: NSManagedObject {
-
     func save()
     func delete()
     static func all<T: NSManagedObject>() -> [T]
@@ -21,7 +20,6 @@ extension BaseDataModel {
     }
 
     func delete() {
-
         Self.context.delete(self)
         save()
     }
@@ -36,7 +34,6 @@ extension BaseDataModel {
     }
 
     static func byID<T>(id: NSManagedObjectID) -> T? where T: NSManagedObject {
-
         do {
             return try context.existingObject(with: id) as? T
         } catch {
@@ -46,9 +43,7 @@ extension BaseDataModel {
     }
 
     static func all<T>() -> [T] where T: NSManagedObject {
-
         let fetchRequest: NSFetchRequest<T> = NSFetchRequest(entityName: String(describing: T.self))
-
         do {
             return try context.fetch(fetchRequest)
         } catch {
@@ -59,12 +54,8 @@ extension BaseDataModel {
 
 //MARK: - Data Models Extended
 
-extension ExpenseEntity: BaseDataModel {
+extension ExpenseEntity: BaseDataModel {}
 
-}
-
-extension IntervalEntity: BaseDataModel {
-
-}
+extension IntervalEntity: BaseDataModel {}
 
 

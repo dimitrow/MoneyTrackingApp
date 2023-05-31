@@ -15,25 +15,27 @@ protocol StorageServiceType {
     func createRecord()
     func updateRecord()
     func deleteRecord()
-    func createInterval()
-    func updateInterval()
-    func deleteInterval()
+    func createInterval(_ interval: Interval)
+    func updateInterval(_ interval: Interval)
+    func deleteInterval(_ interval: Interval)
 }
 
 class StorageService: StorageServiceType {
 
     private let storageManager: StorageManager
-    private let persistanceContainer: NSPersistentContainer
-    private let mapper: ModelMapperType
+    private let context: NSManagedObjectContext
+    private let storageMapper: StorageMapperType
 
-    init(storageManager: StorageManager, mapper: ModelMapperType) {
+    init(storageManager: StorageManager,
+         storageMapper: StorageMapperType) {
         self.storageManager = storageManager
-        self.persistanceContainer = storageManager.persistentContainer
-        self.mapper = mapper
+        self.context = storageManager.persistentContainer.viewContext
+        self.storageMapper = storageMapper
     }
 
     func fetchAllIntervals() -> [Interval] {
 
+        let intervals: [IntervalEntity] = IntervalEntity.all()
         return []
     }
 
@@ -54,15 +56,17 @@ class StorageService: StorageServiceType {
 
     }
 
-    func createInterval() {
+    func createInterval(_ interval: Interval) {
+
+        let entity = storageMapper.mapIntervalModelToEntity(interval)
+        storageManager.save()
+    }
+
+    func updateInterval(_ interval: Interval) {
 
     }
 
-    func updateInterval() {
-
-    }
-
-    func deleteInterval() {
+    func deleteInterval(_ interval: Interval) {
 
     }
 }
