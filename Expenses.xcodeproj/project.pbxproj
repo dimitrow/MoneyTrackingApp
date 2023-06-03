@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */; };
+		1640EAB7292D611E007A0650 /* ExpensesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB6292D611E007A0650 /* ExpensesListViewModel.swift */; };
 		1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640EAB8292D612D007A0650 /* ExpensesListView.swift */; };
 		167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AAC2A252EC2009AA0B6 /* DataModel.xcdatamodeld */; };
 		167A0AB12A254460009AA0B6 /* View+Corners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AB02A254460009AA0B6 /* View+Corners.swift */; };
@@ -20,14 +20,20 @@
 		167A0AC12A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABD2A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift */; };
 		167A0AC22A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */; };
 		167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */; };
+		167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */; };
+		16A1B4B52A2877BD00DF1DF8 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */; };
+		16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B62A287D0100DF1DF8 /* Router.swift */; };
+		16A1B4B92A287EDE00DF1DF8 /* ExpensesListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */; };
+		16A1B4BB2A287FAB00DF1DF8 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BA2A287FAB00DF1DF8 /* Scenes.swift */; };
+		16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BC2A29CED500DF1DF8 /* RouterAssembly.swift */; };
+		16A1B4BF2A29D03200DF1DF8 /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BE2A29D03200DF1DF8 /* RouterViewModel.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
-		16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C062292A95D300BBDB18 /* ContentView.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
 		16F4C068292A95D300BBDB18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseListViewModel.swift; sourceTree = "<group>"; };
+		1640EAB6292D611E007A0650 /* ExpensesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListViewModel.swift; sourceTree = "<group>"; };
 		1640EAB8292D612D007A0650 /* ExpensesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListView.swift; sourceTree = "<group>"; };
 		167A0AAD2A252EC2009AA0B6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		167A0AB02A254460009AA0B6 /* View+Corners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Corners.swift"; sourceTree = "<group>"; };
@@ -40,9 +46,15 @@
 		167A0ABD2A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntervalEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntervalEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMapper.swift; sourceTree = "<group>"; };
+		167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataViewModel.swift; sourceTree = "<group>"; };
+		16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
+		16A1B4B62A287D0100DF1DF8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListAssembly.swift; sourceTree = "<group>"; };
+		16A1B4BA2A287FAB00DF1DF8 /* Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenes.swift; sourceTree = "<group>"; };
+		16A1B4BC2A29CED500DF1DF8 /* RouterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAssembly.swift; sourceTree = "<group>"; };
+		16A1B4BE2A29D03200DF1DF8 /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
-		16F4C062292A95D300BBDB18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		16F4C064292A95D300BBDB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,9 +73,9 @@
 		1640EABA292EB79A007A0650 /* ExpensesListScene */ = {
 			isa = PBXGroup;
 			children = (
-				167A0AB42A25F27C009AA0B6 /* EmptyDataView */,
 				1640EAB8292D612D007A0650 /* ExpensesListView.swift */,
-				1640EAB6292D611E007A0650 /* ExpenseListViewModel.swift */,
+				1640EAB6292D611E007A0650 /* ExpensesListViewModel.swift */,
+				16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */,
 			);
 			path = ExpensesListScene;
 			sourceTree = "<group>";
@@ -89,12 +101,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		167A0AB42A25F27C009AA0B6 /* EmptyDataView */ = {
+		167A0AB42A25F27C009AA0B6 /* EmptyDataScene */ = {
 			isa = PBXGroup;
 			children = (
 				167A0AB52A25F2A7009AA0B6 /* EmptyDataView.swift */,
+				167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */,
 			);
-			path = EmptyDataView;
+			path = EmptyDataScene;
 			sourceTree = "<group>";
 		};
 		167A0AC32A274A9A009AA0B6 /* Entities */ = {
@@ -106,6 +119,18 @@
 				167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		167A0ACA2A27D050009AA0B6 /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */,
+				16A1B4BE2A29D03200DF1DF8 /* RouterViewModel.swift */,
+				16A1B4BC2A29CED500DF1DF8 /* RouterAssembly.swift */,
+				16A1B4B62A287D0100DF1DF8 /* Router.swift */,
+				16A1B4BA2A287FAB00DF1DF8 /* Scenes.swift */,
+			);
+			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
 		16F4C054292A95D200BBDB18 = {
@@ -127,11 +152,12 @@
 		16F4C05F292A95D300BBDB18 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
+				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
+				167A0ACA2A27D050009AA0B6 /* AppCoordinator */,
 				167A0AAF2A25443A009AA0B6 /* Extensions */,
 				167A0AAB2A252E77009AA0B6 /* DataLayer */,
-				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
-				16F4C062292A95D300BBDB18 /* ContentView.swift */,
 				1640EABA292EB79A007A0650 /* ExpensesListScene */,
+				167A0AB42A25F27C009AA0B6 /* EmptyDataScene */,
 				16F4C064292A95D300BBDB18 /* Assets.xcassets */,
 				16F4C066292A95D300BBDB18 /* Preview Content */,
 			);
@@ -216,16 +242,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16F4C063292A95D300BBDB18 /* ContentView.swift in Sources */,
 				167A0AC02A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift in Sources */,
+				16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */,
 				167A0ABF2A274A84009AA0B6 /* ExpenseEntity+CoreDataClass.swift in Sources */,
 				167A0AB12A254460009AA0B6 /* View+Corners.swift in Sources */,
 				167A0AB62A25F2A7009AA0B6 /* EmptyDataView.swift in Sources */,
-				1640EAB7292D611E007A0650 /* ExpenseListViewModel.swift in Sources */,
+				1640EAB7292D611E007A0650 /* ExpensesListViewModel.swift in Sources */,
+				16A1B4BF2A29D03200DF1DF8 /* RouterViewModel.swift in Sources */,
 				167A0AB82A273DDA009AA0B6 /* BaseDataModel.swift in Sources */,
 				167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */,
+				16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */,
+				167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */,
+				16A1B4BB2A287FAB00DF1DF8 /* Scenes.swift in Sources */,
 				16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */,
 				167A0AC12A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift in Sources */,
+				16A1B4B52A2877BD00DF1DF8 /* RouterView.swift in Sources */,
+				16A1B4B92A287EDE00DF1DF8 /* ExpensesListAssembly.swift in Sources */,
 				167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */,
 				167A0ABA2A273E74009AA0B6 /* StorageManager.swift in Sources */,
 				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,

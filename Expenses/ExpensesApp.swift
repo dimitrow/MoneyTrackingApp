@@ -10,16 +10,11 @@ import SwiftUI
 @main
 struct ExpensesApp: App {
 
-    private let storageService: StorageService
-
     var body: some Scene {
         WindowGroup {
-            ExpensesListView(viewModel: ExpenseListViewModel(storageService: storageService))
+            RouterAssembly().getScene()
+//            ExpensesListAssembly().getScene()
+//            ExpensesListView(viewModel: ExpensesListViewModel(storageService: storageService))
         }
-    }
-
-    init() {
-        self.storageService = StorageService(storageManager: StorageManager.shared,
-                                             storageMapper: StorageMapper())
     }
 }

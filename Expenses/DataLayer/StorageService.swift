@@ -10,6 +10,7 @@ import CoreData
 
 protocol StorageServiceType {
 
+    func isUserHasData() -> Bool
     func fetchAllIntervals() -> [Interval]
     func fetchCurrentInterval() -> Interval?
     func createRecord()
@@ -31,6 +32,11 @@ class StorageService: StorageServiceType {
         self.storageManager = storageManager
         self.context = storageManager.persistentContainer.viewContext
         self.storageMapper = storageMapper
+    }
+
+    func isUserHasData() -> Bool {
+
+        return !(IntervalEntity.all() as [IntervalEntity]).isEmpty
     }
 
     func fetchAllIntervals() -> [Interval] {

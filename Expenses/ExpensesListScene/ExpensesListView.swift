@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct ExpensesListView<Model: ExpenseListViewModelType>: View {
+struct ExpensesListView<Model: ExpensesListViewModelType>: View {
 
     @ObservedObject var viewModel: Model
 
     @State var bottomHeight: CGFloat = 88.0
     @State var isInputMinimized: Bool = true
+
     var body: some View {
         VStack(spacing: 0.0) {
             ZStack{
@@ -22,30 +23,26 @@ struct ExpensesListView<Model: ExpenseListViewModelType>: View {
                 VStack(spacing: 0.0) {
                     Color.white
                         .frame(height: 160)
-
-                    if let _ = viewModel.currentInterval {
-                        Text("Present some data")
-//                        ScrollView(.vertical, showsIndicators: false) {
-//                            ForEach(viewModel.expenses, id: \.id) { expense in
-//                                ExpenseView(amount: expense.amount)
-//                            }
-//                        }
-                    } else {
-                        Text("Ask to create interval")
-//                            .padding(.bottom, 80.0)
-                        Button {
-                            viewModel.createNewInterval()
-                        } label: {
-                            Text("Add new Interval")
-                                .padding()
-                        }
-                        Button {
-                            viewModel.fetchIntervals()
-                        } label: {
-                            Text("fetch")
-                                .padding()
-                        }
                     }
+                    Text("Present data")
+
+//                    if let _ = viewModel.currentInterval {
+//                        Text("Present data")
+//                    } else {
+//                        Text("You've spent nothing yet")
+//                        Button {
+//                            viewModel.createNewInterval()
+//                        } label: {
+//                            Text("Add new Interval")
+//                                .padding()
+//                        }
+//                    }
+//                }
+                Button {
+                    viewModel.fetchIntervals()
+                } label: {
+                    Text("fetch")
+                        .padding()
                 }
             }
             ZStack{
@@ -77,16 +74,7 @@ struct ExpensesListView_Previews: PreviewProvider {
                                         storageMapper: StorageMapper())
     static var previews: some View {
         NavigationStack {
-            ExpensesListView(viewModel: ExpenseListViewModel(storageService: storageService))
+            ExpensesListView(viewModel: ExpensesListViewModel(storageService: storageService, router: Router()))
         }
-    }
-}
-
-struct ExpenseView: View {
-
-    var amount: String
-    var body: some View {
-        Text(amount)
-            .padding(12.0)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ExpenseListViewModel.swift
+//  ExpensesListViewModel.swift
 //  Expenses
 //
 //  Created by Gene Dimitrow on 21.11.2022.
@@ -29,31 +29,32 @@ struct Interval: Identifiable {
     var expenses: [Expense]?
 }
 
-protocol ExpenseListViewModelInput {
+protocol ExpensesListViewModelInput {
 
     func createNewInterval()
     func fetchIntervals()
 }
 
-protocol ExpenseListViewModelOutput {
+protocol ExpensesListViewModelOutput {
 
     var fullExpensesAmount: String { get set }
     var currentInterval: Interval? { get }
 }
 
-protocol ExpenseListViewModelType: ExpenseListViewModelInput,
-                                   ExpenseListViewModelOutput,
-                                   ObservableObject {}
+protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListViewModelOutput, ObservableObject {}
 
-class ExpenseListViewModel: ExpenseListViewModelType {
+class ExpensesListViewModel: ExpensesListViewModelType {
 
     @Published var fullExpensesAmount: String = ""
     @Published var currentInterval: Interval?
 
     private let storageService: StorageServiceType
+    private let router: Router
 
-    init(storageService: StorageServiceType) {
+    init(storageService: StorageServiceType,
+         router: Router) {
         self.storageService = storageService
+        self.router = router
         self.currentInterval = self.storageService.fetchCurrentInterval()
     }
 
@@ -67,6 +68,7 @@ class ExpenseListViewModel: ExpenseListViewModelType {
     }
 
     func fetchIntervals() {
-        _ = storageService.fetchAllIntervals()
+        _ = storageService.isUserHasData()
+//        _ = storageService.fetchAllIntervals()
     }
 }
