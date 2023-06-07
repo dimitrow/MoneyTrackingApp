@@ -10,9 +10,11 @@ import SwiftUI
 @main
 struct ExpensesApp: App {
 
+    private let router = Router()
+
     var body: some Scene {
         WindowGroup {
-            RouterAssembly().getScene()
+            RouterAssembly().getScene(router)
 //            ExpensesListAssembly().getScene()
 //            ExpensesListView(viewModel: ExpensesListViewModel(storageService: storageService))
         }

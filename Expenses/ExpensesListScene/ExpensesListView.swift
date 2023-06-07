@@ -23,26 +23,13 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 VStack(spacing: 0.0) {
                     Color.white
                         .frame(height: 160)
-                    }
                     Text("Present data")
-
-//                    if let _ = viewModel.currentInterval {
-//                        Text("Present data")
-//                    } else {
-//                        Text("You've spent nothing yet")
-//                        Button {
-//                            viewModel.createNewInterval()
-//                        } label: {
-//                            Text("Add new Interval")
-//                                .padding()
-//                        }
-//                    }
-//                }
-                Button {
-                    viewModel.fetchIntervals()
-                } label: {
-                    Text("fetch")
-                        .padding()
+                    Button {
+                        viewModel.fetchIntervals()
+                    } label: {
+                        Text("fetch")
+                            .padding()
+                    }
                 }
             }
             ZStack{
@@ -70,11 +57,13 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
 
 struct ExpensesListView_Previews: PreviewProvider {
 
-    static var storageService = StorageService(storageManager: StorageManager.shared,
+    static let storageService = StorageService(storageManager: StorageManager.shared,
                                         storageMapper: StorageMapper())
+    static let viewModel = ExpensesListViewModel(storageService: storageService,
+                                                 router: Router())
     static var previews: some View {
         NavigationStack {
-            ExpensesListView(viewModel: ExpensesListViewModel(storageService: storageService, router: Router()))
+            ExpensesListView(viewModel: viewModel)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 protocol SceneAssembly {
     associatedtype V: View
-    func getScene() -> V
+    func getScene(_ router: Router) -> V
 }
 
 enum Scenes {

@@ -10,11 +10,10 @@ import SwiftUI
 class RouterAssembly: SceneAssembly {
 
     @ViewBuilder
-    func getScene() -> some View {
+    func getScene(_ router: Router) -> some View {
         let storageService = StorageService(storageManager: StorageManager.shared,
                                              storageMapper: StorageMapper())
-
-        let viewModel = RouterViewModel(storageService: storageService, router: Router())
-        RouterView(viewModel: viewModel)
+        let viewModel = RouterViewModel(storageService: storageService, router: router)
+        RouterView(viewModel: viewModel,router: router)
     }
 }

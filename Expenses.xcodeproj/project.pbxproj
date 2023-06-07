@@ -23,10 +23,16 @@
 		167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */; };
 		16A1B4B52A2877BD00DF1DF8 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */; };
 		16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B62A287D0100DF1DF8 /* Router.swift */; };
-		16A1B4B92A287EDE00DF1DF8 /* ExpensesListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */; };
+		16A1B4B92A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B82A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift */; };
 		16A1B4BB2A287FAB00DF1DF8 /* Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BA2A287FAB00DF1DF8 /* Scenes.swift */; };
 		16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BC2A29CED500DF1DF8 /* RouterAssembly.swift */; };
 		16A1B4BF2A29D03200DF1DF8 /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4BE2A29D03200DF1DF8 /* RouterViewModel.swift */; };
+		16A1B4C12A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4C02A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift */; };
+		16A1B4C42A2D144800DF1DF8 /* AddNewIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4C32A2D144800DF1DF8 /* AddNewIntervalView.swift */; };
+		16A1B4C62A2D145700DF1DF8 /* AddNewIntervalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4C52A2D145700DF1DF8 /* AddNewIntervalViewModel.swift */; };
+		16A1B4C82A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */; };
+		16A1B4CB2A2DD98D00DF1DF8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */; };
+		16A1B4CD2A2DD99700DF1DF8 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
 		16F4C068292A95D300BBDB18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */; };
@@ -49,10 +55,16 @@
 		167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataViewModel.swift; sourceTree = "<group>"; };
 		16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		16A1B4B62A287D0100DF1DF8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListAssembly.swift; sourceTree = "<group>"; };
+		16A1B4B82A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListSceneAssembly.swift; sourceTree = "<group>"; };
 		16A1B4BA2A287FAB00DF1DF8 /* Scenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenes.swift; sourceTree = "<group>"; };
 		16A1B4BC2A29CED500DF1DF8 /* RouterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterAssembly.swift; sourceTree = "<group>"; };
 		16A1B4BE2A29D03200DF1DF8 /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
+		16A1B4C02A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataSceneAssembly.swift; sourceTree = "<group>"; };
+		16A1B4C32A2D144800DF1DF8 /* AddNewIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIntervalView.swift; sourceTree = "<group>"; };
+		16A1B4C52A2D145700DF1DF8 /* AddNewIntervalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIntervalViewModel.swift; sourceTree = "<group>"; };
+		16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIntervalViewAssembly.swift; sourceTree = "<group>"; };
+		16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C064292A95D300BBDB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,7 +87,7 @@
 			children = (
 				1640EAB8292D612D007A0650 /* ExpensesListView.swift */,
 				1640EAB6292D611E007A0650 /* ExpensesListViewModel.swift */,
-				16A1B4B82A287EDE00DF1DF8 /* ExpensesListAssembly.swift */,
+				16A1B4B82A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift */,
 			);
 			path = ExpensesListScene;
 			sourceTree = "<group>";
@@ -106,6 +118,7 @@
 			children = (
 				167A0AB52A25F2A7009AA0B6 /* EmptyDataView.swift */,
 				167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */,
+				16A1B4C02A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift */,
 			);
 			path = EmptyDataScene;
 			sourceTree = "<group>";
@@ -133,6 +146,25 @@
 			path = AppCoordinator;
 			sourceTree = "<group>";
 		};
+		16A1B4C22A2D13B100DF1DF8 /* AddNewIntervalScene */ = {
+			isa = PBXGroup;
+			children = (
+				16A1B4C32A2D144800DF1DF8 /* AddNewIntervalView.swift */,
+				16A1B4C52A2D145700DF1DF8 /* AddNewIntervalViewModel.swift */,
+				16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */,
+			);
+			path = AddNewIntervalScene;
+			sourceTree = "<group>";
+		};
+		16A1B4C92A2DD96600DF1DF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */,
+				16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		16F4C054292A95D200BBDB18 = {
 			isa = PBXGroup;
 			children = (
@@ -152,10 +184,12 @@
 		16F4C05F292A95D300BBDB18 /* Expenses */ = {
 			isa = PBXGroup;
 			children = (
+				16A1B4C92A2DD96600DF1DF8 /* Models */,
 				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
 				167A0ACA2A27D050009AA0B6 /* AppCoordinator */,
 				167A0AAF2A25443A009AA0B6 /* Extensions */,
 				167A0AAB2A252E77009AA0B6 /* DataLayer */,
+				16A1B4C22A2D13B100DF1DF8 /* AddNewIntervalScene */,
 				1640EABA292EB79A007A0650 /* ExpensesListScene */,
 				167A0AB42A25F27C009AA0B6 /* EmptyDataScene */,
 				16F4C064292A95D300BBDB18 /* Assets.xcassets */,
@@ -246,22 +280,28 @@
 				16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */,
 				167A0ABF2A274A84009AA0B6 /* ExpenseEntity+CoreDataClass.swift in Sources */,
 				167A0AB12A254460009AA0B6 /* View+Corners.swift in Sources */,
+				16A1B4C12A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift in Sources */,
 				167A0AB62A25F2A7009AA0B6 /* EmptyDataView.swift in Sources */,
 				1640EAB7292D611E007A0650 /* ExpensesListViewModel.swift in Sources */,
 				16A1B4BF2A29D03200DF1DF8 /* RouterViewModel.swift in Sources */,
+				16A1B4C82A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift in Sources */,
 				167A0AB82A273DDA009AA0B6 /* BaseDataModel.swift in Sources */,
 				167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */,
 				16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */,
 				167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */,
+				16A1B4C62A2D145700DF1DF8 /* AddNewIntervalViewModel.swift in Sources */,
+				16A1B4CD2A2DD99700DF1DF8 /* Interval.swift in Sources */,
 				16A1B4BB2A287FAB00DF1DF8 /* Scenes.swift in Sources */,
 				16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */,
 				167A0AC12A274A84009AA0B6 /* IntervalEntity+CoreDataClass.swift in Sources */,
 				16A1B4B52A2877BD00DF1DF8 /* RouterView.swift in Sources */,
-				16A1B4B92A287EDE00DF1DF8 /* ExpensesListAssembly.swift in Sources */,
+				16A1B4B92A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift in Sources */,
 				167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */,
+				16A1B4C42A2D144800DF1DF8 /* AddNewIntervalView.swift in Sources */,
 				167A0ABA2A273E74009AA0B6 /* StorageManager.swift in Sources */,
 				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,
 				167A0AB32A25E5F8009AA0B6 /* StorageService.swift in Sources */,
+				16A1B4CB2A2DD98D00DF1DF8 /* Expense.swift in Sources */,
 				167A0AC22A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

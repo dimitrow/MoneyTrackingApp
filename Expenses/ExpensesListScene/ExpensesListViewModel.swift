@@ -7,38 +7,17 @@
 
 import Foundation
 
-struct Expense: Identifiable {
-
-    var id: UUID
-    var amount: String
-    var isIncome: Bool
-    var description: String?
-
-    var timeStamp: Date
-
-    var interval: Interval
-}
-
-struct Interval: Identifiable {
-
-    var id: UUID
-    var amount: Double
-    var interval: Int16
-    var timeStamp: Date
-
-    var expenses: [Expense]?
-}
-
 protocol ExpensesListViewModelInput {
 
-    func createNewInterval()
-    func fetchIntervals()
+    func addRecord()
 }
 
 protocol ExpensesListViewModelOutput {
 
     var fullExpensesAmount: String { get set }
     var currentInterval: Interval? { get }
+
+    func fetchIntervals()
 }
 
 protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListViewModelOutput, ObservableObject {}
@@ -58,17 +37,11 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         self.currentInterval = self.storageService.fetchCurrentInterval()
     }
 
-    func createNewInterval() {
+    func fetchIntervals() {
 
-        let interval = Interval(id: UUID(),
-                                amount: 30000.0,
-                                interval: 30,
-                                timeStamp: Date())
-        storageService.createInterval(interval)
     }
 
-    func fetchIntervals() {
-        _ = storageService.isUserHasData()
-//        _ = storageService.fetchAllIntervals()
+    func addRecord() {
+
     }
 }
