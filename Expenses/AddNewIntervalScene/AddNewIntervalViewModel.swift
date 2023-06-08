@@ -15,6 +15,9 @@ protocol AddNewIntervalViewModelInput {
 protocol AddNewIntervalViewModelOutput {
     var duration: Double { get set }
     var durationBinding: Binding<Double> { get }
+
+    var amount: String { get set }
+    var amountBinding: Binding<String> { get }
 }
 
 protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, ObservableObject {}
@@ -24,13 +27,22 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
     private let storageService: StorageServiceType
     private var router: Router
 
-    @Published internal var duration: Double = 10.0
+    @Published var duration: Double = 30.0
 
     var durationBinding: Binding<Double> {
         Binding {
             self.duration
         } set: { duration in
             self.duration = duration
+        }
+    }
+
+    @Published var amount: String = ""
+    var amountBinding: Binding<String> {
+        Binding {
+            self.amount
+        } set: { amount in
+            self.amount = amount
         }
     }
 

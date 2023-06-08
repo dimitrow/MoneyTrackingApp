@@ -27,6 +27,5 @@ class EmptyDataViewModel: EmptyDataViewModelType {
     
     func routeFurther() {
         router.setInitial(scene: .newInterval)
-//        router.setInitial()
     }
 }

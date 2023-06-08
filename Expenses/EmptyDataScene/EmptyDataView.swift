@@ -26,6 +26,8 @@ struct EmptyDataView<Model: EmptyDataViewModelType>: View {
 
 struct EmptyDataView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyDataView(viewModel: EmptyDataViewModel(router: Router()))
+        NavigationStack {
+            EmptyDataView(viewModel: EmptyDataViewModel(router: Router()))
+        }
     }
 }
