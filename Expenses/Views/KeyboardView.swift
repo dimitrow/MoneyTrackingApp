@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let keyboardSpacing: CGFloat = 8.0
+
 enum KeyboardOperation {
     case submit
     case removeLast
@@ -27,30 +29,30 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack{
-                HStack {
-                    VStack {
+            VStack(spacing: keyboardSpacing){
+                HStack(spacing: keyboardSpacing) {
+                    VStack(spacing: keyboardSpacing) {
                         numberButton("1")
                         numberButton("4")
                         numberButton("7")
                     }
-                    VStack {
+                    VStack(spacing: keyboardSpacing) {
                         numberButton("2")
                         numberButton("5")
                         numberButton("8")
                     }
-                    VStack {
+                    VStack(spacing: keyboardSpacing) {
                         numberButton("3")
                         numberButton("6")
                         numberButton("9")
                     }
-                    VStack {
+                    VStack(spacing: keyboardSpacing) {
                         funcButton(.removeLast)
                         funcButton(.clearAll)
                     }
                 }
                 .frame(height: geometry.size.height * 0.75)
-                HStack {
+                HStack(spacing: keyboardSpacing) {
                     numberButton("0")
                     funcButton(.submit)
                 }
@@ -66,9 +68,8 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
         ZStack {
             Color.eaBackground
             Text(value)
-                .font(.system(size: 28, weight: .light))
+                .font(.system(size: 20, weight: .light))
                 .foregroundColor(.eaButtonOutline)
-                .padding(20)
         }
         .overlay(content: {
             let borderWidth = 1.0
@@ -92,10 +93,8 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
         ZStack {
             Color.eaButtonOps
             operationIcon(for: operation)
-//            Text("op")
                 .font(.system(size: 20, weight: .light))
                 .foregroundColor(.eaButtonOutline)
-                .padding(20)
         }
         .overlay(content: {
             let borderWidth = 1.0

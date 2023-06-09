@@ -13,27 +13,6 @@ final class Router: ObservableObject {
     @Published var scenes = [Scenes]()
     @Published var defaultScene: Scenes = .main
 
-    @Published private var showInfoAlert: Bool = false
-    var showInfoAlertBinding: Binding<Bool> {
-        Binding {
-            self.showInfoAlert
-        } set: { value in
-            self.showInfoAlert = value
-        }
-    }
-
-    @Published private var showErrorAlert: Bool = false
-    var showErrorAlertBinding: Binding<Bool> {
-        Binding {
-            self.showErrorAlert
-        } set: { value in
-            self.showErrorAlert = value
-        }
-    }
-
-    var alertTitle: String = ""
-    var alertMessage: String = ""
-
     func push(to scene: Scenes) {
         scenes.append(scene)
     }
@@ -48,12 +27,6 @@ final class Router: ObservableObject {
 
     func setInitial(scene: Scenes) {
         self.defaultScene = scene
-    }
-
-    func showAlert(with error: AppErrors) {
-        alertTitle = error.errorDescription.title
-        alertMessage = error.errorDescription.message
-        showErrorAlert = true
     }
 
     @ViewBuilder
