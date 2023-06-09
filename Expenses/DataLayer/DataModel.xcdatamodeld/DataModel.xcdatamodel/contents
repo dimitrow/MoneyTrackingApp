@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22158.8" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExpenseEntity" representedClassName="ExpenseEntity" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isIncome" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -10,8 +10,8 @@
     </entity>
     <entity name="IntervalEntity" representedClassName="IntervalEntity" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="duration" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="interval" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="intervalID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="timeStamp" attributeType="Date" usesScalarValueType="NO"/>

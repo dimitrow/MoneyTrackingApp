@@ -11,6 +11,7 @@ extension Color {
     
     static let eaBackground = Color("eaBackground")
     static let eaButtonOutline = Color("eaButtonOutline")
+    static let eaButtonOps = Color("eaButtonOps")
 }
 
 

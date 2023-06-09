@@ -19,11 +19,11 @@ final class StorageMapper: StorageMapperType {
     func mapIntervalModelToEntity(_ interval: Interval) -> IntervalEntity {
         let calendar = Calendar.current
         let startDate = calendar.startOfDay(for: interval.timeStamp)
-        let endDate = startDate.addingTimeInterval(3600 * 24 * Double(interval.interval + 1))
+        let endDate = startDate.addingTimeInterval(3600 * 24 * Double(interval.duration + 1))
 
         let intervalEntity = IntervalEntity(context: IntervalEntity.context)
         intervalEntity.intervalID = interval.id
-        intervalEntity.interval = interval.interval
+        intervalEntity.duration = interval.duration
         intervalEntity.amount = interval.amount
         intervalEntity.timeStamp = interval.timeStamp
         intervalEntity.startDate = startDate

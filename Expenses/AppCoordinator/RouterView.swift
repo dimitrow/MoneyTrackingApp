@@ -19,6 +19,16 @@ struct RouterView<Model: RouterViewModelType>: View {
                     router.getScene(scene)
                 }
         }
+        .alert(isPresented: router.showErrorAlertBinding) {
+            Alert(title: Text(router.alertTitle),
+                  message: Text(router.alertMessage),
+                  dismissButton: .cancel())
+        }
+        .alert(isPresented: router.showInfoAlertBinding) {
+            Alert(title: Text("Info"),
+                  message: Text("Some message"),
+                  dismissButton: .cancel())
+        }
     }
 }
 

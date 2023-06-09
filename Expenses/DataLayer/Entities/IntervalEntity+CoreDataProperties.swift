@@ -19,7 +19,7 @@ extension IntervalEntity {
     @NSManaged public var intervalID: UUID?
     @NSManaged public var startDate: Date?
     @NSManaged public var endDate: Date?
-    @NSManaged public var interval: Int16
+    @NSManaged public var duration: Int16
     @NSManaged public var amount: Double
     @NSManaged public var timeStamp: Date
     @NSManaged public var expenses: NSSet?
