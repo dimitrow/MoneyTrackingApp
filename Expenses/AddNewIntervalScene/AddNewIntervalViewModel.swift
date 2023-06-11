@@ -10,7 +10,7 @@ import Combine
 
 let defaultIntervalDuration: Double = 30
 
-protocol AddNewIntervalViewModelInput {}
+protocol AddNewIntervalViewModelInput: KeyboardDelegate {}
 
 protocol AddNewIntervalViewModelOutput {
 
@@ -19,14 +19,13 @@ protocol AddNewIntervalViewModelOutput {
 
     var intervalDuration: String { get set }
     var isIntervalDataValid: Bool { get set }
-    var amount: String { get set }
     var durationBinding: Binding<Double> { get }
     var dailyExpense: String { get set }
     var showErrorAlert: Bool { get set }
     var showErrorAlertBinding: Binding<Bool> { get }
 }
 
-protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, KeyboardDelegate, ObservableObject {}
+protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, ObservableObject {}
 
 class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
@@ -38,7 +37,6 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
     @Published var intervalDuration: String = ""
     @Published var isIntervalDataValid: Bool = false
-    @Published var amount: String = "0"
     @Published var dailyExpense: String = "0"
 
     @Published private var duration: Double = defaultIntervalDuration
@@ -71,12 +69,12 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
         Publishers.CombineLatest($intervalDuration, $amount)
             .map{ duration, amount in
 
-                guard let durationInt = Int(duration), let amountInt = Int(amount) else {
+                guard let durationDouble = Double(duration), let amountDouble = Double(amount) else {
                     return "0"
                 }
-                let daylyExpense = amountInt / durationInt
+                let daylyExpense = amountDouble / durationDouble
 
-                return "\(daylyExpense)"
+                return String(format: "%.2f", daylyExpense)
             }
             .eraseToAnyPublisher()
     }
@@ -105,12 +103,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             showAlert(with: .zeroAmount)
             return
         }
-
-        if newIntervalAmount < Double(newIntervalDuration) {
-            showAlert(with: .tooSmallAmount)
-            return
-        }
-
+        
 //        let interval = Interval(id: UUID(),
 //                                amount: newIntervalAmount,
 //                                duration: newIntervalDuration,
@@ -126,24 +119,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
     //MARK: - Keyboard Delegate:
 
-    func updateAmount(_ value: String) {
-        if amount == "0" {
-            amount = ""
-        }
-        amount += value
-    }
-
-    func removeLast() {
-        if amount.count == 1 {
-            amount = "0"
-            return
-        }
-        _ = amount.removeLast()
-    }
-
-    func clearAll() {
-        amount = ""
-    }
+    @Published var amount: String = "0"
 
     func submit() {
         createNewInterval()

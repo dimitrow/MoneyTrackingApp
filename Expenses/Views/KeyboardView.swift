@@ -9,20 +9,6 @@ import SwiftUI
 
 let keyboardSpacing: CGFloat = 8.0
 
-enum KeyboardOperation {
-    case submit
-    case removeLast
-    case clearAll
-}
-
-protocol KeyboardDelegate {
-
-    func updateAmount(_ value: String)
-    func removeLast()
-    func clearAll()
-    func submit()
-}
-
 struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
     var delegate: Delegate
@@ -54,6 +40,7 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
                 .frame(height: geometry.size.height * 0.75)
                 HStack(spacing: keyboardSpacing) {
                     numberButton("0")
+                    numberButton(".")
                     funcButton(.submit)
                 }
                 .frame(height: geometry.size.height * 0.25)
@@ -61,6 +48,7 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
             .padding(.horizontal, 16)
         }
         .padding(.bottom, 32)
+        .padding(.top, 16)
     }
 
     @ViewBuilder
@@ -114,6 +102,7 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
     }
 
     func updateAmount(_ value: String) {
+//        keyboardViewModel.updateAmount(value)
         delegate.updateAmount(value)
     }
 
@@ -121,8 +110,10 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
         switch operation {
         case .clearAll:
             delegate.clearAll()
+//            keyboardViewModel.clearAll()
         case .removeLast:
             delegate.removeLast()
+//            keyboardViewModel.removeLast()
         case .submit:
             delegate.submit()
         }
@@ -140,6 +131,22 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
     }
 }
 
-//#Preview {
-//    KeyboardView(value: Binding<String>)
-//}
+struct KeyboardView_Previews: PreviewProvider {
+
+    static let storageService = StorageService(storageManager: StorageManager.shared,
+                                        storageMapper: StorageMapper())
+    static let viewModel = AddNewIntervalViewModel(storageService: storageService,
+                                                   router: Router())
+
+    static var previews: some View {
+        Group {
+            KeyboardView(delegate: viewModel)
+                .frame(width: 480, height: 480)
+            KeyboardView(delegate: viewModel)
+                .frame(width: 480, height: 480)
+                .preferredColorScheme(.dark)
+        }
+        .previewLayout(.sizeThatFits)
+    }
+
+}
