@@ -10,10 +10,14 @@ import Combine
 
 let defaultIntervalDuration: Double = 30
 
-protocol AddNewIntervalViewModelInput: KeyboardDelegate {}
+protocol AddNewIntervalViewModelInput: KeyboardDelegate {
+    func confirmIntervalCreation()
+    func routeToExpensesList()
+}
 
 protocol AddNewIntervalViewModelOutput {
 
+    var interval: Interval? { get set }
     var alertTitle: String { get set }
     var alertMessage: String { get set }
 
@@ -23,6 +27,8 @@ protocol AddNewIntervalViewModelOutput {
     var dailyExpense: String { get set }
     var showErrorAlert: Bool { get set }
     var showErrorAlertBinding: Binding<Bool> { get }
+    var showConfirmationAlert: Bool { get set }
+    var showConfirmationAlertBinding: Binding<Bool> { get }
 }
 
 protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, ObservableObject {}
@@ -31,6 +37,10 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
     private let storageService: StorageServiceType
     private var router: Router
+
+    var interval: Interval?
+
+    @Published var amount: String = "0"
 
     var alertTitle: String = ""
     var alertMessage: String = ""
@@ -54,6 +64,15 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             self.showErrorAlert
         } set: { value in
             self.showErrorAlert = value
+        }
+    }
+
+    @Published var showConfirmationAlert: Bool = false
+    var showConfirmationAlertBinding: Binding<Bool> {
+        Binding {
+            self.showConfirmationAlert
+        } set: { value in
+            self.showConfirmationAlert = value
         }
     }
 
@@ -103,25 +122,37 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             showAlert(with: .zeroAmount)
             return
         }
-        
-//        let interval = Interval(id: UUID(),
-//                                amount: newIntervalAmount,
-//                                duration: newIntervalDuration,
-//                                timeStamp: Date())
-//        storageService.createInterval(interval)
+        interval = Interval(id: UUID(),
+                                amount: newIntervalAmount,
+                                duration: newIntervalDuration,
+                                timeStamp: Date())
+
+        showConfirmationAlert = true
     }
 
-    private func showAlert(with error: AppErrors) {
+    func confirmIntervalCreation() {
+        guard let interval = interval else {
+            showAlert(with: .missingIntervalData)
+            return
+        }
+        storageService.createInterval(interval)
+    }
+
+    private func showAlert(with error: AppError) {
         alertTitle = error.errorDescription.title
         alertMessage = error.errorDescription.message
         showErrorAlert = true
     }
 
-    //MARK: - Keyboard Delegate:
 
-    @Published var amount: String = "0"
+    func routeToExpensesList() {
+        router.setInitial(scene: .main)
+    }
+
+    //MARK: - Keyboard Delegate:
 
     func submit() {
         createNewInterval()
     }
 }
+

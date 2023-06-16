@@ -15,8 +15,6 @@ struct ExpensesApp: App {
     var body: some Scene {
         WindowGroup {
             RouterAssembly().getScene(router)
-//            ExpensesListAssembly().getScene()
-//            ExpensesListView(viewModel: ExpensesListViewModel(storageService: storageService))
         }
     }
 }
