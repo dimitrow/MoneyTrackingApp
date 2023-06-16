@@ -23,7 +23,6 @@ struct AddNewIntervalView<Model: AddNewIntervalViewModelType>: View {
             Slider(value: viewModel.durationBinding,
                    in: 10...30,
                    step: 1)
-//            .padding(.bottom, 34)
             .padding(.horizontal, 64)
             Spacer()
             KeyboardView(delegate: viewModel)

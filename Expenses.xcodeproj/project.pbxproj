@@ -36,6 +36,8 @@
 		16F45BCD2A31DF9800AC5658 /* Color+CustomNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BCC2A31DF9800AC5658 /* Color+CustomNames.swift */; };
 		16F45BD02A320A6A00AC5658 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */; };
 		16F45BD22A33466400AC5658 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD12A33466400AC5658 /* AppErrors.swift */; };
+		16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */; };
+		16F45BD62A3B2F2500AC5658 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD52A3B2F2500AC5658 /* KeyView.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
 		16F4C068292A95D300BBDB18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */; };
@@ -71,6 +73,8 @@
 		16F45BCC2A31DF9800AC5658 /* Color+CustomNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomNames.swift"; sourceTree = "<group>"; };
 		16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		16F45BD12A33466400AC5658 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
+		16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegate.swift; sourceTree = "<group>"; };
+		16F45BD52A3B2F2500AC5658 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C064292A95D300BBDB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */,
+				16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */,
+				16F45BD52A3B2F2500AC5658 /* KeyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */,
 				167A0AC02A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift in Sources */,
 				16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */,
 				167A0ABF2A274A84009AA0B6 /* ExpenseEntity+CoreDataClass.swift in Sources */,
@@ -304,6 +311,7 @@
 				16A1B4C82A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift in Sources */,
 				167A0AB82A273DDA009AA0B6 /* BaseDataModel.swift in Sources */,
 				167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */,
+				16F45BD62A3B2F2500AC5658 /* KeyView.swift in Sources */,
 				16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */,
 				16F45BD22A33466400AC5658 /* AppErrors.swift in Sources */,
 				167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */,

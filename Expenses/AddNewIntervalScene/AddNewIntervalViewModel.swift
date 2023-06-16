@@ -23,7 +23,6 @@ protocol AddNewIntervalViewModelOutput {
 
     var intervalDuration: String { get set }
     var isIntervalDataValid: Bool { get set }
-    var amount: String { get set }
     var durationBinding: Binding<Double> { get }
     var dailyExpense: String { get set }
     var showErrorAlert: Bool { get set }
@@ -32,7 +31,7 @@ protocol AddNewIntervalViewModelOutput {
     var showConfirmationAlertBinding: Binding<Bool> { get }
 }
 
-protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, KeyboardDelegate, ObservableObject {}
+protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, ObservableObject {}
 
 class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
@@ -48,7 +47,6 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
     @Published var intervalDuration: String = ""
     @Published var isIntervalDataValid: Bool = false
-    @Published var amount: String = "0"
     @Published var dailyExpense: String = "0"
 
     @Published private var duration: Double = defaultIntervalDuration
@@ -90,12 +88,12 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
         Publishers.CombineLatest($intervalDuration, $amount)
             .map{ duration, amount in
 
-                guard let durationInt = Int(duration), let amountInt = Int(amount) else {
+                guard let durationDouble = Double(duration), let amountDouble = Double(amount) else {
                     return "0"
                 }
-                let daylyExpense = amountInt / durationInt
+                let daylyExpense = amountDouble / durationDouble
 
-                return "\(daylyExpense)"
+                return String(format: "%.2f", daylyExpense)
             }
             .eraseToAnyPublisher()
     }
@@ -124,7 +122,6 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             showAlert(with: .zeroAmount)
             return
         }
-        
         interval = Interval(id: UUID(),
                                 amount: newIntervalAmount,
                                 duration: newIntervalDuration,
@@ -146,6 +143,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
         alertMessage = error.errorDescription.message
         showErrorAlert = true
     }
+
 
     func routeToExpensesList() {
         router.setInitial(scene: .main)

@@ -41,7 +41,7 @@ class StorageService: StorageServiceType {
 
     func fetchAllIntervals() -> [Interval] {
 
-        let intervals: [IntervalEntity] = IntervalEntity.all()
+//        let intervals: [IntervalEntity] = IntervalEntity.all()
         return []
     }
 
@@ -64,7 +64,7 @@ class StorageService: StorageServiceType {
 
     func createInterval(_ interval: Interval) {
 
-        let entity = storageMapper.mapIntervalModelToEntity(interval)
+        _ = storageMapper.mapIntervalModelToEntity(interval)
         storageManager.save()
     }
 
