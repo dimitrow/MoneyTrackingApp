@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum KeyboardOperation {
-    case submit
-    case removeLast
-    case clearAll
-}
-
 protocol KeyboardDelegate: AnyObject {
 
     var amount: String { get set }

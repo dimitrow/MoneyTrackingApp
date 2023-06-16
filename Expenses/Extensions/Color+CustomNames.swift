@@ -10,8 +10,11 @@ import SwiftUI
 extension Color {
     
     static let eaBackground = Color("eaBackground")
-    static let eaButtonOutline = Color("eaButtonOutline")
-    static let eaButtonOps = Color("eaButtonOps")
+    static let eaKeyOutline = Color("eaKeyOutline")
+    static let eaKeyFunctional = Color("eaKeyFunctional")
+    static let eaKeyNumeric = Color("eaKeyNumeric")
+    static let eaKeyFontColor = Color("eaKeyFontColor")
+    static let eaKeyTapped = Color("eaKeyTapped")
 }
 
 
