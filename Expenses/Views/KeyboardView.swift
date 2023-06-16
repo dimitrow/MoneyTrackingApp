@@ -7,21 +7,9 @@
 
 import SwiftUI
 
-let keyboardSpacing: CGFloat = 8.0
-
-enum KeyboardOperation {
-    case submit
-    case removeLast
-    case clearAll
-}
-
-protocol KeyboardDelegate {
-
-    func updateAmount(_ value: String)
-    func removeLast()
-    func clearAll()
-    func submit()
-}
+private let keyboardSpacing: CGFloat = 8.0
+private let keyboardHorizontalPadding: CGFloat = 16.0
+private let keyboardVerticalPadding: CGFloat = 16.0
 
 struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
@@ -29,117 +17,92 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
     var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: keyboardSpacing){
+            let width = geometry.size.width
+            
+            VStack(spacing: keyboardSpacing) {
+                HStack(spacing: keyboardSpacing) {
+                    KeyView(keyType: .numeric(.value("1")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .numeric(.value("2")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .numeric(.value("3")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .functional(.removeLast),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                }
+                .frame(height: geometry.size.height / 4)
+                HStack(spacing: keyboardSpacing) {
+                    KeyView(keyType: .numeric(.value("4")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .numeric(.value("5")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .numeric(.value("6")),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                    KeyView(keyType: .functional(.clearAll),
+                            delegate: delegate)
+                        .frame(width: width / 4)
+                }
+                .frame(height: geometry.size.height / 4)
                 HStack(spacing: keyboardSpacing) {
                     VStack(spacing: keyboardSpacing) {
-                        numberButton("1")
-                        numberButton("4")
-                        numberButton("7")
+                        KeyView(keyType: .numeric(.value("7")),
+                                delegate: delegate)
+                            .frame(width: width / 4)
+                        KeyView(keyType: .numeric(.value(".")),
+                                delegate: delegate)
+                            .frame(width: width / 4)
                     }
                     VStack(spacing: keyboardSpacing) {
-                        numberButton("2")
-                        numberButton("5")
-                        numberButton("8")
+                        HStack(spacing: keyboardSpacing) {
+                            KeyView(keyType: .numeric(.value("8")),
+                                    delegate: delegate)
+                                .frame(width: width / 4)
+                            KeyView(keyType: .numeric(.value("9")),
+                                    delegate: delegate)
+                                .frame(width: width / 4)
+                        }
+                        KeyView(keyType: .numeric(.value("0")),
+                                delegate: delegate)
+                            .frame(width: width / 2 + keyboardSpacing)
                     }
-                    VStack(spacing: keyboardSpacing) {
-                        numberButton("3")
-                        numberButton("6")
-                        numberButton("9")
-                    }
-                    VStack(spacing: keyboardSpacing) {
-                        funcButton(.removeLast)
-                        funcButton(.clearAll)
+                    VStack {
+                        KeyView(keyType: .functional(.submit),
+                                delegate: delegate)
+                            .frame(width: width / 4)
                     }
                 }
-                .frame(height: geometry.size.height * 0.75)
-                HStack(spacing: keyboardSpacing) {
-                    numberButton("0")
-                    funcButton(.submit)
-                }
-                .frame(height: geometry.size.height * 0.25)
+                .frame(height: geometry.size.height / 2 + keyboardSpacing)
             }
-            .padding(.horizontal, 16)
+            .frame(maxWidth: geometry.size.width,
+                   maxHeight: geometry.size.height)
         }
-        .padding(.bottom, 32)
-    }
-
-    @ViewBuilder
-    func numberButton(_ value: String) -> some View {
-        ZStack {
-            Color.eaBackground
-            Text(value)
-                .font(.system(size: 20, weight: .light))
-                .foregroundColor(.eaButtonOutline)
-        }
-        .overlay(content: {
-            let borderWidth = 1.0
-            RoundedRectangle(cornerRadius: 20)
-                .inset(by: borderWidth / 2)
-                .stroke(Color.eaButtonOutline,
-                        lineWidth: borderWidth)
-//                .shadow(color: .white, radius: 5)
-        })
-        .clipShape(
-            RoundedRectangle(cornerRadius: 20.0)
-        )
-        .shadow(color: .white, radius: 1)
-        .onTapGesture {
-            updateAmount(value)
-        }
-    }
-
-    @ViewBuilder
-    func funcButton(_ operation: KeyboardOperation) -> some View {
-        ZStack {
-            Color.eaButtonOps
-            operationIcon(for: operation)
-                .font(.system(size: 20, weight: .light))
-                .foregroundColor(.eaButtonOutline)
-        }
-        .overlay(content: {
-            let borderWidth = 1.0
-            RoundedRectangle(cornerRadius: 20)
-                .inset(by: borderWidth / 2)
-                .stroke(Color.eaButtonOutline,
-                    lineWidth: borderWidth)
-//                .shadow(color: .white, radius: 5)
-        })
-        .clipShape(
-            RoundedRectangle(cornerRadius: 20.0)
-        )
-        .shadow(color: .white, radius: 1)
-        .onTapGesture {
-            executeOperation(operation)
-        }
-    }
-
-    func updateAmount(_ value: String) {
-        delegate.updateAmount(value)
-    }
-
-    private func executeOperation(_ operation: KeyboardOperation) {
-        switch operation {
-        case .clearAll:
-            delegate.clearAll()
-        case .removeLast:
-            delegate.removeLast()
-        case .submit:
-            delegate.submit()
-        }
-    }
-
-    private func operationIcon(for operation: KeyboardOperation) -> Image {
-        switch operation {
-        case .clearAll:
-            return Image(systemName: "clear")
-        case .removeLast:
-            return Image(systemName: "delete.backward")
-        case .submit:
-            return Image(systemName: "return")
-        }
+        .padding(.horizontal, keyboardHorizontalPadding)
+        .padding(.vertical, keyboardVerticalPadding)
     }
 }
 
-//#Preview {
-//    KeyboardView(value: Binding<String>)
-//}
+struct KeyboardView_Previews: PreviewProvider {
+
+    static let storageService = StorageService(storageManager: StorageManager.shared,
+                                        storageMapper: StorageMapper())
+    static let viewModel = AddNewIntervalViewModel(storageService: storageService,
+                                                   router: Router())
+
+    static var previews: some View {
+        Group {
+            KeyboardView(delegate: viewModel)
+            KeyboardView(delegate: viewModel)
+                .preferredColorScheme(.dark)
+        }
+        .frame(width: 480, height: 480)
+        .previewLayout(.sizeThatFits)
+    }
+
+}
