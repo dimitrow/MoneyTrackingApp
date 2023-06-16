@@ -7,24 +7,24 @@
 
 import Foundation
 
-typealias AlertReadyError = (title: String, message: String)
+typealias AlertErrorDescription = (title: String, message: String)
 
-enum AppErrors: Error {
+enum AppError: Error {
 
     case missingIntervalData
     case zeroAmount
     case tooSmallAmount
 
-    var errorDescription: AlertReadyError {
+    var errorDescription: AlertErrorDescription {
         switch self {
         case .missingIntervalData:
-            return AlertReadyError(title: "Error",
+            return AlertErrorDescription(title: "Error",
                                    message: "Data needed for interval creation is missed")
         case .zeroAmount:
-            return AlertReadyError(title: "Error",
+            return AlertErrorDescription(title: "Error",
                                    message: "Expected Amount should be more than zero")
         case .tooSmallAmount:
-            return AlertReadyError(title: "Error",
+            return AlertErrorDescription(title: "Error",
                                    message: "Amount should be at least the same as interval duration")
         }
     }
