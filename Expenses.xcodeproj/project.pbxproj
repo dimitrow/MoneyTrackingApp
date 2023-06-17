@@ -38,6 +38,7 @@
 		16F45BD22A33466400AC5658 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD12A33466400AC5658 /* AppErrors.swift */; };
 		16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */; };
 		16F45BD62A3B2F2500AC5658 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD52A3B2F2500AC5658 /* KeyView.swift */; };
+		16F45BD82A3DD91A00AC5658 /* DurationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
 		16F4C068292A95D300BBDB18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		16F45BD12A33466400AC5658 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
 		16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegate.swift; sourceTree = "<group>"; };
 		16F45BD52A3B2F2500AC5658 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
+		16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationInputView.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C064292A95D300BBDB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				16A1B4C32A2D144800DF1DF8 /* AddNewIntervalView.swift */,
 				16A1B4C52A2D145700DF1DF8 /* AddNewIntervalViewModel.swift */,
 				16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */,
+				16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */,
 			);
 			path = AddNewIntervalScene;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */,
 				167A0AC02A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift in Sources */,
 				16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */,
+				16F45BD82A3DD91A00AC5658 /* DurationInputView.swift in Sources */,
 				167A0ABF2A274A84009AA0B6 /* ExpenseEntity+CoreDataClass.swift in Sources */,
 				167A0AB12A254460009AA0B6 /* View+Corners.swift in Sources */,
 				16A1B4C12A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift in Sources */,

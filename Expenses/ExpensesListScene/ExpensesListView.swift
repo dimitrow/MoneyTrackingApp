@@ -14,15 +14,29 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
     @State var bottomHeight: CGFloat = 88.0
     @State var isInputMinimized: Bool = true
 
+    var settingsButton: some View {
+        Button(action: {
+
+        }) {
+            Image(systemName: "gearshape")
+        }
+    }
+
+    var editButton: some View {
+        Button(action: {
+
+        }) {
+            Image(systemName: "pencil.circle")
+        }
+    }
+
     var body: some View {
         VStack(spacing: 0.0) {
             ZStack{
-                Color(.systemBackground)
+                Color.eaBackground
                     .edgesIgnoringSafeArea(.bottom)
                     .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
                 VStack(spacing: 0.0) {
-                    Color.white
-                        .frame(height: 160)
                     Text("Present data")
                     Button {
                         viewModel.fetchIntervals()
@@ -33,25 +47,36 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 }
             }
             ZStack{
-                Color.white
+                Color.eaBackground
                     .cornerRadius(8, corners: [.topLeft, .topRight])
                     .padding(.top, 2)
-                Button {
-                    withAnimation(.interactiveSpring(response: 0.3, dampingFraction: 0.7)) {
-                        isInputMinimized.toggle()
-                        bottomHeight = isInputMinimized ? 88 : 320
+                VStack {
+                    Button {
+                        withAnimation(.interactiveSpring(response: 0.3, dampingFraction: 0.7)) {
+                            isInputMinimized.toggle()
+                            bottomHeight = isInputMinimized ? 88 : 320
+                        }
+                    } label: {
+                        Text("Add new")
+                            .padding()
                     }
-                } label: {
-                    Text("Add new")
-                        .padding()
+                    .padding(.top, 4)
+                    Spacer()
                 }
-                Spacer()
             }
             .frame(height: bottomHeight)
         }
         .navigationTitle("Current Expenses")
         .background(.black)
         .ignoresSafeArea(.all, edges: .all)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                HStack(spacing: 0) {
+                    editButton
+                    settingsButton
+                }
+            }
+        }
     }
 }
 

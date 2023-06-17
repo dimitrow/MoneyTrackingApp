@@ -10,7 +10,7 @@ import Combine
 
 let defaultIntervalDuration: Double = 30
 
-protocol AddNewIntervalViewModelInput: KeyboardDelegate {
+protocol AddNewIntervalViewModelInput {
     func confirmIntervalCreation()
     func routeToExpensesList()
 }
@@ -31,7 +31,7 @@ protocol AddNewIntervalViewModelOutput {
     var showConfirmationAlertBinding: Binding<Bool> { get }
 }
 
-protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, ObservableObject {}
+protocol AddNewIntervalViewModelType: AddNewIntervalViewModelInput, AddNewIntervalViewModelOutput, KeyboardDelegate,  ObservableObject {}
 
 class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
@@ -110,6 +110,8 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             .assign(to: &$dailyExpense)
     }
 
+    //MARK: - Private
+
     private func createNewInterval() {
 
         guard let newIntervalAmount = Double(amount),
@@ -130,13 +132,6 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
         showConfirmationAlert = true
     }
 
-    func confirmIntervalCreation() {
-        guard let interval = interval else {
-            showAlert(with: .missingIntervalData)
-            return
-        }
-        storageService.createInterval(interval)
-    }
 
     private func showAlert(with error: AppError) {
         alertTitle = error.errorDescription.title
@@ -144,6 +139,15 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
         showErrorAlert = true
     }
 
+    //MARK: - ViewModel Input
+
+    func confirmIntervalCreation() {
+        guard let interval = interval else {
+            showAlert(with: .missingIntervalData)
+            return
+        }
+        storageService.createInterval(interval)
+    }
 
     func routeToExpensesList() {
         router.setInitial(scene: .main)

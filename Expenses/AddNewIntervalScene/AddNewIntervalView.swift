@@ -14,32 +14,25 @@ struct AddNewIntervalView<Model: AddNewIntervalViewModelType>: View {
     var body: some View {
         VStack {
             Text("You are going to spend: \(viewModel.amount) in \(viewModel.intervalDuration) days")
-//                .padding(.bottom, 10)
+                .padding(.bottom, 10)
             Text("Or \(viewModel.dailyExpense) per day")
-//                .padding(.bottom, 90)
+                .padding(.bottom, 10)
             Text("IntervalAmount: \(viewModel.amount)")
-            Text("Duration \(viewModel.intervalDuration) days")
-//                .padding(.bottom, 28)
-            Slider(value: viewModel.durationBinding,
-                   in: 10...30,
-                   step: 1)
-            .padding(.horizontal, 64)
             Spacer()
+            DurationInputView(duration: viewModel.durationBinding,
+                              formattedDuration: viewModel.intervalDuration)
             KeyboardView(delegate: viewModel)
-                .frame(height: 280)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
         }
         .background(Color.eaBackground)
         .background(ignoresSafeAreaEdges: .bottom)
-        .navigationTitle("Create an Interval")
+        .navigationTitle("Set an Interval")
         .alert(viewModel.alertTitle,
                isPresented: viewModel.showErrorAlertBinding) {
             Button("OK") {}
         } message: {
             Text(viewModel.alertMessage)
         }
-        .alert("Create a new Interval",
+        .alert("Set an Interval",
                isPresented: viewModel.showConfirmationAlertBinding) {
             Button("OK") {
                 confirmCreation()
