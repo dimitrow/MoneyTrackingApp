@@ -11,7 +11,7 @@ private let keyboardSpacing: CGFloat = 8.0
 private let keyboardHorizontalPadding: CGFloat = 32.0
 private let keyboardBottomPadding: CGFloat = 32.0
 private let keyboardTopPadding: CGFloat = 16.0
-private let keyboardHeight: CGFloat = 240.0
+private let keyboardHeight: CGFloat = 180.0
 
 struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
@@ -88,7 +88,6 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
         .frame(height: keyboardHeight)
         .padding(.horizontal, keyboardHorizontalPadding)
         .padding(.top, keyboardTopPadding)
-        .padding(.bottom, keyboardBottomPadding)
     }
 }
 

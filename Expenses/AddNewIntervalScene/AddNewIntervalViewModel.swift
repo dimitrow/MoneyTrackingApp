@@ -124,10 +124,18 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             showAlert(with: .zeroAmount)
             return
         }
+
+        let calendar = Calendar.current
+        let timeStamp = Date()
+        let startDate = calendar.startOfDay(for: timeStamp)
+        let endDate = startDate.addingTimeInterval(3600 * 24 * Double(newIntervalDuration + 1))
+
         interval = Interval(id: UUID(),
-                                amount: newIntervalAmount,
-                                duration: newIntervalDuration,
-                                timeStamp: Date())
+                            amount: newIntervalAmount,
+                            duration: newIntervalDuration,
+                            timeStamp: Date(),
+                            startDate: startDate,
+                            endDate: endDate)
 
         showConfirmationAlert = true
     }
@@ -146,7 +154,9 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             showAlert(with: .missingIntervalData)
             return
         }
-        storageService.createInterval(interval)
+        storageService.createInterval(interval) { [weak self] in
+            self?.routeToExpensesList()
+        }
     }
 
     func routeToExpensesList() {

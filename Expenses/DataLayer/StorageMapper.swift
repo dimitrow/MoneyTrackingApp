@@ -8,26 +8,39 @@
 import Foundation
 
 protocol StorageMapperType {
-    func mapIntervalEntityToModel()
+    func mapIntervalEntityToModel(_ entity: IntervalEntity) throws -> Interval
     func mapIntervalModelToEntity(_ interval: Interval) -> IntervalEntity
 }
 
 final class StorageMapper: StorageMapperType {
 
-    func mapIntervalEntityToModel() {}
+    func mapIntervalEntityToModel(_ entity: IntervalEntity) throws -> Interval {
+
+        guard let intervalID = entity.intervalID,
+              let startDate = entity.startDate,
+              let endDate = entity.endDate else {
+
+            throw DatabaseServiceError.intervalFetchError
+        }
+        let interval = Interval(id: intervalID,
+                                amount: entity.amount,
+                                duration: entity.duration,
+                                timeStamp: entity.timeStamp,
+                                startDate: startDate,
+                                endDate: endDate)
+
+        return interval
+    }
 
     func mapIntervalModelToEntity(_ interval: Interval) -> IntervalEntity {
-        let calendar = Calendar.current
-        let startDate = calendar.startOfDay(for: interval.timeStamp)
-        let endDate = startDate.addingTimeInterval(3600 * 24 * Double(interval.duration + 1))
 
         let intervalEntity = IntervalEntity(context: IntervalEntity.context)
         intervalEntity.intervalID = interval.id
         intervalEntity.duration = interval.duration
         intervalEntity.amount = interval.amount
         intervalEntity.timeStamp = interval.timeStamp
-        intervalEntity.startDate = startDate
-        intervalEntity.endDate = endDate
+        intervalEntity.startDate = interval.startDate
+        intervalEntity.endDate = interval.endDate
         return intervalEntity
     }
 }

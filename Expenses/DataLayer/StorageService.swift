@@ -8,6 +8,8 @@
 import Foundation
 import CoreData
 
+typealias SaveCompletion = () -> Void
+
 protocol StorageServiceType {
 
     func isUserHasData() -> Bool
@@ -16,9 +18,9 @@ protocol StorageServiceType {
     func createRecord()
     func updateRecord()
     func deleteRecord()
-    func createInterval(_ interval: Interval)
-    func updateInterval(_ interval: Interval)
-    func deleteInterval(_ interval: Interval)
+    func createInterval(_ interval: Interval, completion: SaveCompletion)
+    func updateInterval(_ interval: Interval, completion: SaveCompletion)
+    func deleteInterval(_ interval: Interval, completion: SaveCompletion)
 }
 
 class StorageService: StorageServiceType {
@@ -62,17 +64,17 @@ class StorageService: StorageServiceType {
 
     }
 
-    func createInterval(_ interval: Interval) {
-
+    func createInterval(_ interval: Interval, completion: SaveCompletion) {
         _ = storageMapper.mapIntervalModelToEntity(interval)
-        storageManager.save()
+        try? storageManager.save()
+        completion()
     }
 
-    func updateInterval(_ interval: Interval) {
+    func updateInterval(_ interval: Interval, completion: SaveCompletion) {
 
     }
 
-    func deleteInterval(_ interval: Interval) {
+    func deleteInterval(_ interval: Interval, completion: SaveCompletion) {
 
     }
 }

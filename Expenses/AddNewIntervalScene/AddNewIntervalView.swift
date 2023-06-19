@@ -44,7 +44,9 @@ struct AddNewIntervalView<Model: AddNewIntervalViewModelType>: View {
     }
 
     private func confirmCreation() {
-        viewModel.confirmIntervalCreation()
+        Task {
+            await viewModel.confirmIntervalCreation()
+        }
     }
 }
 

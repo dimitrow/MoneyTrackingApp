@@ -29,3 +29,8 @@ enum AppError: Error {
         }
     }
 }
+
+enum DatabaseServiceError: Error {
+    case intervalFetchError
+    case entitySaveError
+}

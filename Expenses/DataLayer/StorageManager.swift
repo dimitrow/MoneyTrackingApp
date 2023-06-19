@@ -8,7 +8,7 @@
 import CoreData
 
 protocol StorageManagerType {
-    func save()
+    func save() throws
 }
 
 class StorageManager: StorageManagerType {
@@ -29,12 +29,12 @@ class StorageManager: StorageManagerType {
         }
     }
 
-    func save() {
+    func save() throws {
         do {
             try viewContext.save()
         } catch {
-            print(error)
             viewContext.rollback()
+            throw DatabaseServiceError.entitySaveError
         }
     }
 }

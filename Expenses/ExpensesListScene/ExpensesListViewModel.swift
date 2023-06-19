@@ -20,10 +20,11 @@ protocol ExpensesListViewModelOutput {
     func fetchIntervals()
 }
 
-protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListViewModelOutput, ObservableObject {}
+protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListViewModelOutput, KeyboardDelegate, ObservableObject {}
 
 class ExpensesListViewModel: ExpensesListViewModelType {
 
+    @Published var amount: String = "0"
     @Published var fullExpensesAmount: String = ""
     @Published var currentInterval: Interval?
 
@@ -43,5 +44,9 @@ class ExpensesListViewModel: ExpensesListViewModelType {
 
     func addRecord() {
 
+    }
+
+    func submit() {
+        
     }
 }

@@ -34,7 +34,7 @@ struct DurationInputView: View {
                 HStack(alignment: .center) {
                     Text("Duration:")
                         .font(.system(size: inputViewFontSize,
-                                      weight: .bold))
+                                      weight: .medium))
                         .foregroundColor(.eaKeyFontColor)
                         .padding(.leading, labelHorizontalPadding)
                     Spacer()
@@ -49,6 +49,7 @@ struct DurationInputView: View {
                 Slider(value: $duration,
                        in: sliderRange,
                        step: 1)
+                .tint(.eaKeyOutline)
                 .padding(.horizontal, sliderHorizontalPadding)
                 .padding(.bottom, sliderBottomPadding)
             }

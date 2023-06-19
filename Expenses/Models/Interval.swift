@@ -13,6 +13,8 @@ struct Interval: Identifiable {
     var amount: Double
     var duration: Int16
     var timeStamp: Date
+    var startDate: Date
+    var endDate: Date
 
     var expenses: [Expense]?
 }
