@@ -10,6 +10,7 @@
     </entity>
     <entity name="IntervalEntity" representedClassName="IntervalEntity" syncable="YES">
         <attribute name="amount" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="dailyLimit" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="duration" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="intervalID" attributeType="UUID" usesScalarValueType="NO"/>

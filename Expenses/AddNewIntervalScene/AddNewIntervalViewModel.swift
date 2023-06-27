@@ -24,7 +24,7 @@ protocol AddNewIntervalViewModelOutput {
     var intervalDuration: String { get set }
     var isIntervalDataValid: Bool { get set }
     var durationBinding: Binding<Double> { get }
-    var dailyExpense: String { get set }
+    var dailyLimit: String { get set }
     var showErrorAlert: Bool { get set }
     var showErrorAlertBinding: Binding<Bool> { get }
     var showConfirmationAlert: Bool { get set }
@@ -47,7 +47,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
     @Published var intervalDuration: String = ""
     @Published var isIntervalDataValid: Bool = false
-    @Published var dailyExpense: String = "0"
+    @Published var dailyLimit: String = "0"
 
     @Published private var duration: Double = defaultIntervalDuration
     var durationBinding: Binding<Double> {
@@ -91,9 +91,9 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
                 guard let durationDouble = Double(duration), let amountDouble = Double(amount) else {
                     return "0"
                 }
-                let daylyExpense = amountDouble / durationDouble
+                let daylyLimit = amountDouble / durationDouble
 
-                return String(format: "%.2f", daylyExpense)
+                return String(format: "%.2f", daylyLimit)
             }
             .eraseToAnyPublisher()
     }
@@ -107,7 +107,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             .assign(to: &$intervalDuration)
         dailyExpensePublisher
             .receive(on: RunLoop.main)
-            .assign(to: &$dailyExpense)
+            .assign(to: &$dailyLimit)
     }
 
     //MARK: - Private
@@ -125,17 +125,27 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             return
         }
 
-        let calendar = Calendar.current
         let timeStamp = Date()
-        let startDate = calendar.startOfDay(for: timeStamp)
-        let endDate = startDate.addingTimeInterval(3600 * 24 * Double(newIntervalDuration + 1))
+        guard let startDate = timeStamp.adjust(for: .startOfDay),
+              let endDate = startDate.offset(.day, value: Int(newIntervalDuration))?.adjust(for: .endOfDay) else {
+            fatalError()
+        }
 
+        //for debug only:
+//        guard let timeStamp = Date().offset(.day, value: -4),
+//              let startDate = timeStamp.adjust(for: .startOfDay),
+//              let endDate = startDate.offset(.day, value: Int(newIntervalDuration))?.adjust(for: .endOfDay) else {
+//            fatalError()
+//        }
+        
+        let daylyLimit = newIntervalAmount / Double(newIntervalDuration)
         interval = Interval(id: UUID(),
                             amount: newIntervalAmount,
                             duration: newIntervalDuration,
-                            timeStamp: Date(),
+                            timeStamp: timeStamp,
                             startDate: startDate,
-                            endDate: endDate)
+                            endDate: endDate,
+                            dailyLimit: daylyLimit)
 
         showConfirmationAlert = true
     }

@@ -15,6 +15,7 @@ struct Interval: Identifiable {
     var timeStamp: Date
     var startDate: Date
     var endDate: Date
-
-    var expenses: [Expense]?
+    var dailyLimit: Double
+    var currentExpenses: [Expense] = []
+    var pastExpenses: [DailyExpenses] = []
 }

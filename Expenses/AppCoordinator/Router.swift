@@ -38,7 +38,9 @@ final class Router: ObservableObject {
         case .newInterval:
             AddNewIntervalViewAssembly().getScene(self)
         case .intervalDetails(let interval):
-            EmptyView().foregroundColor(.green)
+            EmptyView()
+        case .expenseDetails(let expense):
+            EmptyView()
         }
     }
 }

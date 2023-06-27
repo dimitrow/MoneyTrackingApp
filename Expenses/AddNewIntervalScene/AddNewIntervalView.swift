@@ -15,7 +15,7 @@ struct AddNewIntervalView<Model: AddNewIntervalViewModelType>: View {
         VStack {
             Text("You are going to spend: \(viewModel.amount) in \(viewModel.intervalDuration) days")
                 .padding(.bottom, 10)
-            Text("Or \(viewModel.dailyExpense) per day")
+            Text("Or \(viewModel.dailyLimit) per day")
                 .padding(.bottom, 10)
             Text("IntervalAmount: \(viewModel.amount)")
             Spacer()

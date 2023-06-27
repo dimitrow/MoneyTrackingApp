@@ -13,7 +13,7 @@ protocol KeyboardDelegate: AnyObject {
     
     func updateAmount(_ value: String)
     func removeLast()
-    func clearAll()
+    func clearAmount()
     func submit()
 }
 
@@ -42,7 +42,7 @@ extension KeyboardDelegate {
         _ = amount.removeLast()
     }
 
-    func clearAll() {
+    func clearAmount() {
         amount = "0"
     }
 }

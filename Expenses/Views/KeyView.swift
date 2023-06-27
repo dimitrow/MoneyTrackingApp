@@ -118,7 +118,7 @@ struct KeyView<Delegate: KeyboardDelegate>: View {
         case .functional(let function):
             switch function {
             case .clearAll:
-                delegate.clearAll()
+                delegate.clearAmount()
             case .removeLast:
                 delegate.removeLast()
             case .submit:

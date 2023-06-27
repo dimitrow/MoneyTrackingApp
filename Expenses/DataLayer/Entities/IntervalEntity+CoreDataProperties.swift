@@ -21,9 +21,16 @@ extension IntervalEntity {
     @NSManaged public var endDate: Date?
     @NSManaged public var duration: Int16
     @NSManaged public var amount: Double
+    @NSManaged public var dailyLimit: Double
     @NSManaged public var timeStamp: Date
     @NSManaged public var expenses: NSSet?
 
+    public var expensesArray: [ExpenseEntity] {
+        let expensesSet = expenses as? Set<ExpenseEntity> ?? []
+        return expensesSet.sorted {
+            $0.timeStamp < $1.timeStamp
+        }
+    }
 }
 
 // MARK: Generated accessors for expenses
