@@ -23,15 +23,26 @@ extension KeyboardDelegate {
 
         let chars = Array(amount)
 
-        if let dotIndex = chars.firstIndex(of: ".") {
-            if value == "." {
-                return
-            }
-            if dotIndex == chars.count - 3 {
-                return
-            }
+        if value == "." && chars.count > 6 {
+            return
         }
-        amount = amount == "0" ? value : amount + value
+
+        if let dotIndex = chars.firstIndex(of: ".") {
+            if value == "." { return }
+            if dotIndex == chars.count - 3 { return }
+        }
+
+        if chars.count == 9 {
+            return
+        }
+
+        if amount == "0" && value == "." {
+            amount = amount + value
+        } else {
+
+            amount = amount == "0" ? value : amount + value
+        }
+
     }
 
     func removeLast() {

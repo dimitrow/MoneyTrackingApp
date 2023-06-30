@@ -39,12 +39,12 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 VStack(spacing: 2.0) {
                     ZStack{
                         Color.eaBackground
-                            .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
-                        VStack(spacing: 10.0) {
+//                            .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
+                        VStack(spacing: 0.0) {
                             HStack {
                                 VStack {
-                                    Text("Full amount: \(viewModel.currentIntervalAmount)")
-                                    Text("Spent already: \(viewModel.fullExpenses)")
+                                    Text("Full amount: \(viewModel.intervalAmount)")
+                                    Text("Spent already: \(viewModel.spentInTotal)")
                                     if viewModel.isUserSaving {
                                         Text("saved: \(viewModel.saved)")
                                             .foregroundColor(.green)
@@ -54,7 +54,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                     }
                                 }
                                 VStack {
-                                    Text("spent today: \(viewModel.todayExpensesAmount)")
+                                    Text("spent today: \(viewModel.spentToday)")
                                     Text("of: \(viewModel.dailyLimit)")
                                 }
 //                                ZStack {
@@ -68,25 +68,28 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
 //                                }
                             }
                             .frame(height: 160)
+                            Divider()
                             ScrollView(.vertical,
                                        showsIndicators: false) {
                                 VStack(spacing: 2.0) {
                                     ForEach(viewModel.pastExpenses, id: \.id) { expense in
                                         ZStack {
-                                            Color.white
+                                            Color.eaBackground
                                             HStack {
                                                 Text("\(expense.timeStamp.toString(format: .custom("MMM d, yyyy")) ?? "")")
-                                                    .frame(width: geometry.size.width / 3)
+                                                    .font(.system(size: 12,
+                                                                  weight: .medium))
+                                                    .frame(width: geometry.size.width / 5)
                                                     .multilineTextAlignment(.trailing)
                                                 ZStack {
-                                                    Color.blue.frame(width: 4.0)
-                                                    Circle().frame(width: 16).foregroundColor(.blue)
-                                                    Circle().frame(width: 8).foregroundColor(.white)
+                                                    Color.eaMainBlue.frame(width: 4.0)
+                                                    Circle().frame(width: 16).foregroundColor(.eaMainBlue)
+                                                    Circle().frame(width: 8).foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
                                                 }
 
                                                 Text(String(format: "%.2f", expense.dailyAmount))
                                                     .multilineTextAlignment(.leading)
-                                                    .foregroundColor(expense.dailyAmount > viewModel.currentInterval.dailyLimit ? Color.red : Color.green)
+                                                    .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
                                                 Spacer()
                                                 Image(systemName: "chevron.right")
                                             }
@@ -102,15 +105,15 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                     }
                                     HStack {
                                         Text("Anfang des Zeitraums")
-                                            .frame(width: geometry.size.width / 3)
+                                            .frame(width: geometry.size.width / 5)
                                             .multilineTextAlignment(.trailing)
                                         ZStack {
                                             VStack {
-                                                Color.blue
+                                                Color.eaMainBlue
                                                     .frame(width: 4.0, height: 22)
                                                 Spacer()
                                             }
-                                            Circle().frame(width: 16).foregroundColor(.blue)
+                                            Circle().frame(width: 16).foregroundColor(.eaMainBlue)
                                             Circle().frame(width: 8).foregroundColor(.white)
                                         }
                                         Spacer()
@@ -121,6 +124,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                             }
                         }
                     }
+                    .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
                     .frame(height: geometry.size.height - bottomHeight)
                     ZStack{
                         Color.eaBackground
@@ -138,12 +142,16 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                             Spacer()
                             VStack(spacing: 0.0) {
                                 HStack(spacing: 0.0) {
+                                    Spacer()
                                     Text("\(viewModel.amount)")
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .font(.system(size: 24,
+//                                        .frame(maxWidth: .infinity, maxHeight: 20, alignment: .trailing)
+                                        .frame(height: 60)
+                                        .font(.system(size: 64,
                                                       weight: .medium))
                                         .foregroundColor(.eaKeyFontColor)
+                                        .background(Color.red)
                                         .padding(.trailing, 32)
+                                        .padding(.bottom, 12)
                                 }
                                 KeyboardView(delegate: viewModel)
                                     .padding(.bottom, 19)

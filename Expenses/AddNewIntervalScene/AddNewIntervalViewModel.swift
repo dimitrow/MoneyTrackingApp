@@ -22,8 +22,8 @@ protocol AddNewIntervalViewModelOutput {
     var alertMessage: String { get set }
 
     var intervalDuration: String { get set }
-    var isIntervalDataValid: Bool { get set }
     var durationBinding: Binding<Double> { get }
+    var isIntervalDataValid: Bool { get set }
     var dailyLimit: String { get set }
     var showErrorAlert: Bool { get set }
     var showErrorAlertBinding: Binding<Bool> { get }
@@ -131,7 +131,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             fatalError()
         }
 
-        //for debug only:
+        // for debug only:
 //        guard let timeStamp = Date().offset(.day, value: -4),
 //              let startDate = timeStamp.adjust(for: .startOfDay),
 //              let endDate = startDate.offset(.day, value: Int(newIntervalDuration))?.adjust(for: .endOfDay) else {

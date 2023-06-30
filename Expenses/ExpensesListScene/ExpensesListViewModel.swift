@@ -18,15 +18,15 @@ protocol ExpensesListViewModelInput {
 
 protocol ExpensesListViewModelOutput {
 
-    var todayExpensesAmount: String { get set }
+    var spentToday: String { get set }
     var pastExpenses: [DailyExpenses] { get }
 
-    var currentIntervalAmount: String { get set }
-    var fullExpenses: String { get set }
+    var intervalAmount: String { get set }
+    var spentInTotal: String { get set }
     var dailyLimit: String { get }
     var saved: String { get }
     var isUserSaving: Bool { get }
-    var currentInterval: Interval { get }
+    var interval: Interval { get }
 }
 
 protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListViewModelOutput, KeyboardDelegate, ObservableObject {}
@@ -34,17 +34,17 @@ protocol ExpensesListViewModelType: ExpensesListViewModelInput, ExpensesListView
 class ExpensesListViewModel: ExpensesListViewModelType {
 
     @Published var amount: String = "0"
-    @Published var todayExpensesAmount: String = "0.00"
-    @Published var currentIntervalAmount: String = ""
-    @Published var fullExpenses: String = ""
+    @Published var spentToday: String = "0.00"
+    @Published var intervalAmount: String = ""
+    @Published var spentInTotal: String = ""
 
     var isUserSaving: Bool = false
     var saved: String = "0.00"
     var dailyLimit: String = ""
     var pastExpenses: [DailyExpenses] = []
 
-    private var pastExpensesAmount = 0.0
-    var currentInterval: Interval
+    private var previousExpenses = 0.0
+    var interval: Interval
 
     private let storageService: StorageServiceType
     private let router: Router
@@ -54,9 +54,9 @@ class ExpensesListViewModel: ExpensesListViewModelType {
          router: Router) {
         self.storageService = storageService
         self.router = router
-        self.currentInterval = self.storageService.fetchCurrentInterval()
+        self.interval = self.storageService.fetchCurrentInterval()
 
-        updateData(for: self.currentInterval)
+        updateData(for: self.interval)
         observeInterval()
     }
 
@@ -65,7 +65,6 @@ class ExpensesListViewModel: ExpensesListViewModelType {
             .intervalUpdated
             .sink { [weak self] _ in
                 if let interval = self?.storageService.fetchCurrentInterval() {
-                    self?.currentInterval = interval
                     self?.updateData(for: interval)
                 }
             }
@@ -73,13 +72,15 @@ class ExpensesListViewModel: ExpensesListViewModelType {
     }
 
     private func updateData(for interval: Interval) {
+        self.interval = interval
         self.pastExpenses = interval.pastExpenses
-        self.pastExpensesAmount = calculateExpenses(interval.pastExpenses.flatMap({$0.expenses}))
+        self.previousExpenses = calculateExpenses(interval.pastExpenses.flatMap({$0.expenses}))
+
         let todayExpenses = calculateExpenses(interval.currentExpenses)
-        self.todayExpensesAmount = String(format: "%.2f", todayExpenses)
-        self.currentIntervalAmount = String(format: "%.2f", currentInterval.amount)
-        self.fullExpenses = String(format: "%.2f", todayExpenses + self.pastExpensesAmount)
-        self.dailyLimit = String(format: "%.2f", currentInterval.dailyLimit)
+        self.spentToday = String(format: "%.2f", todayExpenses)
+        self.intervalAmount = String(format: "%.2f", interval.amount)
+        self.spentInTotal = String(format: "%.2f", todayExpenses + self.previousExpenses)
+        self.dailyLimit = String(format: "%.2f", interval.dailyLimit)
         determineSavings()
     }
 
@@ -91,15 +92,17 @@ class ExpensesListViewModel: ExpensesListViewModelType {
     }
 
     private func determineSavings() {
-        let daysPassed = Double(pastExpenses.count)
-        let grantedAmount = currentInterval.dailyLimit * daysPassed
-        let savings = grantedAmount - pastExpensesAmount
-        self.saved = String(format: "%.2f", savings)
+        guard let daysPassed = Date().since(interval.timeStamp, in: .day) else {
+            return
+        }
+        let grantedAmount = interval.dailyLimit * Double(daysPassed)
+        let savings = grantedAmount - previousExpenses
+        self.saved = String(format: "%.2f", abs(savings))
         self.isUserSaving = savings > 0 ? true : false
     }
 
     func addRecord() {
-
+//        to mock previous expense:
 //        guard let timeStamp = Date().offset(.day, value: -4) else {
 //            fatalError()
 //        }
@@ -107,7 +110,7 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         let expense = Expense(id: UUID(),
                               amount: Double(amount) ?? 0.0,
                               timeStamp: Date(),
-                              intervalID: currentInterval.id)
+                              intervalID: interval.id)
         storageService.createRecord(expense)
     }
 
