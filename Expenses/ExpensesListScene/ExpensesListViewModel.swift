@@ -20,7 +20,7 @@ protocol ExpensesListViewModelOutput {
 
     var spentToday: String { get set }
     var pastExpenses: [DailyExpenses] { get }
-
+    var spendingProgressBinding: Binding<Double> { get }
     var intervalAmount: String { get set }
     var spentInTotal: String { get set }
     var dailyLimit: String { get }
@@ -37,6 +37,15 @@ class ExpensesListViewModel: ExpensesListViewModelType {
     @Published var spentToday: String = "0.00"
     @Published var intervalAmount: String = ""
     @Published var spentInTotal: String = ""
+
+    @Published var spendingProgress: Double = 0.0
+    var spendingProgressBinding: Binding<Double> {
+        Binding {
+            self.spendingProgress
+        } set: { duration in
+            self.spendingProgress = duration
+        }
+    }
 
     var isUserSaving: Bool = false
     var saved: String = "0.00"
@@ -81,6 +90,7 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         self.intervalAmount = String(format: "%.2f", interval.amount)
         self.spentInTotal = String(format: "%.2f", todayExpenses + self.previousExpenses)
         self.dailyLimit = String(format: "%.2f", interval.dailyLimit)
+        self.spendingProgress = (todayExpenses + self.previousExpenses) / interval.amount
         determineSavings()
     }
 

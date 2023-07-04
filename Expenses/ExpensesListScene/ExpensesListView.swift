@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private let bottomHeightMin: CGFloat = 64.0
+private let bottomHeightMin: CGFloat = 48.0
 private let bottomHeightMax: CGFloat = 360.0
 
 struct ExpensesListView<Model: ExpensesListViewModelType>: View {
@@ -39,12 +39,30 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 VStack(spacing: 2.0) {
                     ZStack{
                         Color.eaBackground
-//                            .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
                         VStack(spacing: 0.0) {
                             HStack {
-                                VStack {
-                                    Text("Full amount: \(viewModel.intervalAmount)")
-                                    Text("Spent already: \(viewModel.spentInTotal)")
+                                VStack(spacing: 0.0) {
+                                    Spacer()
+                                    ZStack {
+                                        ProgressView(progress: viewModel.spendingProgressBinding)
+                                        VStack {
+                                            Text(viewModel.spentInTotal)
+                                                .font(.system(size: 16, weight: .semibold))
+                                            Text("of")
+                                                .font(.system(size: 11, weight: .regular))
+                                            Text(viewModel.intervalAmount)
+                                                .font(.system(size: 14, weight: .medium))
+                                        }
+                                    }
+                                    Color.eaMainBlue
+                                        .frame(width: 4.0, height: 8)
+                                }
+                                .frame(width: 128)
+                                .padding(.leading, 48) //104
+                                Spacer()
+                                VStack(alignment: .trailing) {
+                                    Text("bis \(viewModel.interval.endDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                                        .font(.system(size: 24, weight: .bold))
                                     if viewModel.isUserSaving {
                                         Text("saved: \(viewModel.saved)")
                                             .foregroundColor(.green)
@@ -52,74 +70,22 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                         Text("spent over: \(viewModel.saved)")
                                             .foregroundColor(.red)
                                     }
-                                }
-                                VStack {
                                     Text("spent today: \(viewModel.spentToday)")
                                     Text("of: \(viewModel.dailyLimit)")
                                 }
-//                                ZStack {
-//                                    VStack {
-//                                        Color.blue
-//                                            .frame(width: 4.0, height: 22)
-//                                        Spacer()
-//                                    }
-//                                    Circle().frame(width: 16).foregroundColor(.blue)
-//                                    Circle().frame(width: 8).foregroundColor(.white)
-//                                }
+                                .padding(.trailing, 16)
                             }
                             .frame(height: 160)
                             Divider()
-                            ScrollView(.vertical,
-                                       showsIndicators: false) {
+                            ScrollView(.vertical, showsIndicators: false) {
                                 VStack(spacing: 2.0) {
                                     ForEach(viewModel.pastExpenses, id: \.id) { expense in
-                                        ZStack {
-                                            Color.eaBackground
-                                            HStack {
-                                                Text("\(expense.timeStamp.toString(format: .custom("MMM d, yyyy")) ?? "")")
-                                                    .font(.system(size: 12,
-                                                                  weight: .medium))
-                                                    .frame(width: geometry.size.width / 5)
-                                                    .multilineTextAlignment(.trailing)
-                                                ZStack {
-                                                    Color.eaMainBlue.frame(width: 4.0)
-                                                    Circle().frame(width: 16).foregroundColor(.eaMainBlue)
-                                                    Circle().frame(width: 8).foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
-                                                }
-
-                                                Text(String(format: "%.2f", expense.dailyAmount))
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
-                                                Spacer()
-                                                Image(systemName: "chevron.right")
-                                            }
-                                            .frame(height: 48.0)
-                                            .padding(.horizontal, 16.0)
-                                        }
+                                        dailyExpensesView(expense)
                                         .onTapGesture {
                                             viewModel.navigateToExpenseDetails(expense)
                                         }
-                                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                            Text("DELETE")
-                                        }
                                     }
-                                    HStack {
-                                        Text("Anfang des Zeitraums")
-                                            .frame(width: geometry.size.width / 5)
-                                            .multilineTextAlignment(.trailing)
-                                        ZStack {
-                                            VStack {
-                                                Color.eaMainBlue
-                                                    .frame(width: 4.0, height: 22)
-                                                Spacer()
-                                            }
-                                            Circle().frame(width: 16).foregroundColor(.eaMainBlue)
-                                            Circle().frame(width: 8).foregroundColor(.white)
-                                        }
-                                        Spacer()
-                                    }
-                                    .frame(height: 44.0)
-                                    .padding(.horizontal, 16.0)
+                                    footerView(viewModel.interval)
                                 }
                             }
                         }
@@ -128,7 +94,6 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                     .frame(height: geometry.size.height - bottomHeight)
                     ZStack{
                         Color.eaBackground
-                            .cornerRadius(8, corners: [.topLeft, .topRight])
                         VStack(spacing: 0.0) {
                             Button {
                                 withAnimation(.interactiveSpring(response: 0.3,
@@ -144,7 +109,6 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                 HStack(spacing: 0.0) {
                                     Spacer()
                                     Text("\(viewModel.amount)")
-//                                        .frame(maxWidth: .infinity, maxHeight: 20, alignment: .trailing)
                                         .frame(height: 60)
                                         .font(.system(size: 64,
                                                       weight: .medium))
@@ -163,17 +127,61 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
             }
             .background(Color.eaBackground)
         }
-//        .navigationTitle("Current Expenses")
-//        .navigationBarTitleDisplayMode(.inline)
-        .ignoresSafeArea(.all, edges: .bottom)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                HStack(spacing: 0) {
-//                    editButton
-//                    settingsButton
-//                }
-//            }
-//        }
+    }
+
+    @ViewBuilder
+    func dailyExpensesView(_ expense: DailyExpenses) -> some View {
+        ZStack {
+            Color.eaBackground
+            HStack(spacing: 4.0) {
+                Text("\(expense.timeStamp.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                    .font(.system(size: 12,
+                                  weight: .medium))
+                    .frame(maxWidth: 84.0)
+                ZStack {
+                    Color.eaMainBlue
+                        .frame(width: 4.0)
+                    Circle()
+                        .frame(width: 16)
+                        .foregroundColor(.eaMainBlue)
+                    Circle()
+                        .frame(width: 8)
+                        .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
+                }
+
+                Text(String(format: "%.2f", expense.dailyAmount))
+                    .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
+                Spacer()
+                Image(systemName: "chevron.right")
+            }
+            .frame(height: 48.0)
+            .padding(.horizontal, 16.0)
+        }
+    }
+
+    @ViewBuilder
+    func footerView(_ interval: Interval) -> some View {
+        HStack(spacing: 4.0) {
+            Text("\(interval.startDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                .font(.system(size: 12,
+                              weight: .medium))
+                .frame(maxWidth: 84)
+            ZStack {
+                VStack {
+                    Color.eaMainBlue
+                        .frame(width: 4.0, height: 22)
+                    Spacer()
+                }
+                Circle().frame(width: 16).foregroundColor(.eaMainBlue)
+                Circle().frame(width: 8).foregroundColor(.white)
+            }
+            Text("Anfang des Zeitraums")
+                .font(.system(size: 12,
+                              weight: .medium))
+            Spacer()
+        }
+        .frame(height: 44.0)
+        .padding(.horizontal, 16.0)
     }
 }
 

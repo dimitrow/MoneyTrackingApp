@@ -39,7 +39,6 @@ extension KeyboardDelegate {
         if amount == "0" && value == "." {
             amount = amount + value
         } else {
-
             amount = amount == "0" ? value : amount + value
         }
 

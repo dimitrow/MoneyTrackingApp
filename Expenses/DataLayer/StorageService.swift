@@ -49,8 +49,18 @@ class StorageService: StorageServiceType {
 
     func fetchAllIntervals() -> [Interval] {
 
-//        let intervals: [IntervalEntity] = IntervalEntity.all()
+//        guard let intervals: [IntervalEntity] = IntervalEntity.all() else {
+//
+//            return []
+//        }
         return []
+
+//        let userIntervals: [IntervalEntity] = IntervalEntity.all()
+//        guard let intervals = userIntervals.map({storageMapper.mapIntervalEntityToModel($0)})
+//            .sorted(by: {$0.timeStamp > $1.timeStamp}) else {
+//            return []
+//        }
+//        return intervals
     }
 
     func fetchCurrentInterval() -> Interval {

@@ -22,6 +22,7 @@ struct AddNewIntervalView<Model: AddNewIntervalViewModelType>: View {
             DurationInputView(duration: viewModel.durationBinding,
                               formattedDuration: viewModel.intervalDuration)
             KeyboardView(delegate: viewModel)
+                .padding(.bottom, 32)
         }
         .background(Color.eaBackground)
         .background(ignoresSafeAreaEdges: .bottom)
