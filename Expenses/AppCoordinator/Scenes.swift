@@ -15,6 +15,7 @@ protocol SceneAssembly {
 enum Scenes {
     case main
     case intervalDetails(item: Interval)
+    case expenseDetails(item: DailyExpenses)
     case empty
     case newInterval
 }
@@ -33,6 +34,8 @@ extension Scenes: Hashable {
             return true
         case (.newInterval, .newInterval):
             return true
+        case (.expenseDetails(let lhsItem), .expenseDetails(let rhsItem)):
+            return lhsItem.id == rhsItem.id
         case (.intervalDetails(let lhsItem), .intervalDetails(let rhsItem)):
             return lhsItem.id == rhsItem.id
         default:

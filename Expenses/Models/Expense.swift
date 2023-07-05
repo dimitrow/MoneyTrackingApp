@@ -10,11 +10,9 @@ import Foundation
 struct Expense: Identifiable {
 
     var id: UUID
-    var amount: String
-    var isIncome: Bool
+    var amount: Double
+    var isIncome: Bool = false
     var description: String?
-
     var timeStamp: Date
-
-    var interval: Interval
+    var intervalID: UUID
 }

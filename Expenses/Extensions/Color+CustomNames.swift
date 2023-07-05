@@ -15,6 +15,8 @@ extension Color {
     static let eaKeyNumeric = Color("eaKeyNumeric")
     static let eaKeyFontColor = Color("eaKeyFontColor")
     static let eaKeyTapped = Color("eaKeyTapped")
+    static let eaDataField = Color("eaDataField")
+    static let eaMainBlue = Color("eaMainBlue")
 }
 
 

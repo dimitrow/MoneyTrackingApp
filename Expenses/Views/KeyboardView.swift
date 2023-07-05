@@ -8,8 +8,10 @@
 import SwiftUI
 
 private let keyboardSpacing: CGFloat = 8.0
-private let keyboardHorizontalPadding: CGFloat = 16.0
-private let keyboardVerticalPadding: CGFloat = 16.0
+private let keyboardHorizontalPadding: CGFloat = 32.0
+private let keyboardBottomPadding: CGFloat = 32.0
+private let keyboardTopPadding: CGFloat = 16.0
+private let keyboardHeight: CGFloat = 180.0
 
 struct KeyboardView<Delegate: KeyboardDelegate>: View {
 
@@ -83,8 +85,9 @@ struct KeyboardView<Delegate: KeyboardDelegate>: View {
             .frame(maxWidth: geometry.size.width,
                    maxHeight: geometry.size.height)
         }
+        .frame(height: keyboardHeight)
         .padding(.horizontal, keyboardHorizontalPadding)
-        .padding(.vertical, keyboardVerticalPadding)
+        .padding(.top, keyboardTopPadding)
     }
 }
 
@@ -104,5 +107,4 @@ struct KeyboardView_Previews: PreviewProvider {
         .frame(width: 480, height: 480)
         .previewLayout(.sizeThatFits)
     }
-
 }

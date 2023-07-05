@@ -33,15 +33,32 @@
 		16A1B4C82A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */; };
 		16A1B4CB2A2DD98D00DF1DF8 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */; };
 		16A1B4CD2A2DD99700DF1DF8 /* Interval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */; };
+		16AFA90D2A43343A00D9B8FF /* DateHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 16AFA90C2A43343A00D9B8FF /* DateHelper */; };
+		16BEFFAB2A44393A003FB113 /* DailyExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEFFAA2A44393A003FB113 /* DailyExpenses.swift */; };
+		16C7F9C92A4F0F5700ABC76C /* ExpensesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7F9C82A4F0F5700ABC76C /* ExpensesTests.swift */; };
+		16C7F9D02A4F11EF00ABC76C /* KeyboardDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7F9CF2A4F11EF00ABC76C /* KeyboardDelegateTests.swift */; };
+		16C7F9D22A4F16D400ABC76C /* MockKeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7F9D12A4F16D400ABC76C /* MockKeyboardDelegate.swift */; };
+		16CE6CEA2A5429A800A3B041 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CE6CE92A5429A800A3B041 /* ProgressView.swift */; };
 		16F45BCD2A31DF9800AC5658 /* Color+CustomNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BCC2A31DF9800AC5658 /* Color+CustomNames.swift */; };
 		16F45BD02A320A6A00AC5658 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */; };
 		16F45BD22A33466400AC5658 /* AppErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD12A33466400AC5658 /* AppErrors.swift */; };
 		16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */; };
 		16F45BD62A3B2F2500AC5658 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD52A3B2F2500AC5658 /* KeyView.swift */; };
+		16F45BD82A3DD91A00AC5658 /* DurationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */; };
 		16F4C061292A95D300BBDB18 /* ExpensesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4C060292A95D300BBDB18 /* ExpensesApp.swift */; };
 		16F4C065292A95D300BBDB18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C064292A95D300BBDB18 /* Assets.xcassets */; };
 		16F4C068292A95D300BBDB18 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F4C067292A95D300BBDB18 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		16C7F9CA2A4F0F5700ABC76C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16F4C055292A95D200BBDB18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16F4C05C292A95D200BBDB18;
+			remoteInfo = Expenses;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1640EAB6292D611E007A0650 /* ExpensesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensesListViewModel.swift; sourceTree = "<group>"; };
@@ -70,11 +87,19 @@
 		16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIntervalViewAssembly.swift; sourceTree = "<group>"; };
 		16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interval.swift; sourceTree = "<group>"; };
+		16BEFFAA2A44393A003FB113 /* DailyExpenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyExpenses.swift; sourceTree = "<group>"; };
+		16C7F9C62A4F0F5700ABC76C /* ExpensesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpensesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16C7F9C82A4F0F5700ABC76C /* ExpensesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesTests.swift; sourceTree = "<group>"; };
+		16C7F9CF2A4F11EF00ABC76C /* KeyboardDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegateTests.swift; sourceTree = "<group>"; };
+		16C7F9D12A4F16D400ABC76C /* MockKeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockKeyboardDelegate.swift; sourceTree = "<group>"; };
+		16CE6CE82A4F74AA00A3B041 /* Expenses.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Expenses.xctestplan; sourceTree = "<group>"; };
+		16CE6CE92A5429A800A3B041 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		16F45BCC2A31DF9800AC5658 /* Color+CustomNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomNames.swift"; sourceTree = "<group>"; };
 		16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		16F45BD12A33466400AC5658 /* AppErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrors.swift; sourceTree = "<group>"; };
 		16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDelegate.swift; sourceTree = "<group>"; };
 		16F45BD52A3B2F2500AC5658 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
+		16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationInputView.swift; sourceTree = "<group>"; };
 		16F4C05D292A95D300BBDB18 /* Expenses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expenses.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F4C060292A95D300BBDB18 /* ExpensesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesApp.swift; sourceTree = "<group>"; };
 		16F4C064292A95D300BBDB18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,10 +107,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		16C7F9C32A4F0F5700ABC76C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		16F4C05A292A95D200BBDB18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AFA90D2A43343A00D9B8FF /* DateHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +197,7 @@
 				16A1B4C32A2D144800DF1DF8 /* AddNewIntervalView.swift */,
 				16A1B4C52A2D145700DF1DF8 /* AddNewIntervalViewModel.swift */,
 				16A1B4C72A2D146500DF1DF8 /* AddNewIntervalViewAssembly.swift */,
+				16F45BD72A3DD91A00AC5658 /* DurationInputView.swift */,
 			);
 			path = AddNewIntervalScene;
 			sourceTree = "<group>";
@@ -173,8 +207,19 @@
 			children = (
 				16A1B4CA2A2DD98D00DF1DF8 /* Expense.swift */,
 				16A1B4CC2A2DD99700DF1DF8 /* Interval.swift */,
+				16BEFFAA2A44393A003FB113 /* DailyExpenses.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		16C7F9C72A4F0F5700ABC76C /* ExpensesTests */ = {
+			isa = PBXGroup;
+			children = (
+				16C7F9C82A4F0F5700ABC76C /* ExpensesTests.swift */,
+				16C7F9CF2A4F11EF00ABC76C /* KeyboardDelegateTests.swift */,
+				16C7F9D12A4F16D400ABC76C /* MockKeyboardDelegate.swift */,
+			);
+			path = ExpensesTests;
 			sourceTree = "<group>";
 		};
 		16F45BCE2A320A4D00AC5658 /* Views */ = {
@@ -183,6 +228,7 @@
 				16F45BCF2A320A6A00AC5658 /* KeyboardView.swift */,
 				16F45BD32A35D94600AC5658 /* KeyboardDelegate.swift */,
 				16F45BD52A3B2F2500AC5658 /* KeyView.swift */,
+				16CE6CE92A5429A800A3B041 /* ProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,7 +236,9 @@
 		16F4C054292A95D200BBDB18 = {
 			isa = PBXGroup;
 			children = (
+				16CE6CE82A4F74AA00A3B041 /* Expenses.xctestplan */,
 				16F4C05F292A95D300BBDB18 /* Expenses */,
+				16C7F9C72A4F0F5700ABC76C /* ExpensesTests */,
 				16F4C05E292A95D300BBDB18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -199,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				16F4C05D292A95D300BBDB18 /* Expenses.app */,
+				16C7F9C62A4F0F5700ABC76C /* ExpensesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -232,6 +281,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		16C7F9C52A4F0F5700ABC76C /* ExpensesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16C7F9CE2A4F0F5700ABC76C /* Build configuration list for PBXNativeTarget "ExpensesTests" */;
+			buildPhases = (
+				16C7F9C22A4F0F5700ABC76C /* Sources */,
+				16C7F9C32A4F0F5700ABC76C /* Frameworks */,
+				16C7F9C42A4F0F5700ABC76C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16C7F9CB2A4F0F5700ABC76C /* PBXTargetDependency */,
+			);
+			name = ExpensesTests;
+			productName = ExpensesTests;
+			productReference = 16C7F9C62A4F0F5700ABC76C /* ExpensesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		16F4C05C292A95D200BBDB18 /* Expenses */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16F4C06B292A95D300BBDB18 /* Build configuration list for PBXNativeTarget "Expenses" */;
@@ -245,6 +312,9 @@
 			dependencies = (
 			);
 			name = Expenses;
+			packageProductDependencies = (
+				16AFA90C2A43343A00D9B8FF /* DateHelper */,
+			);
 			productName = Expenses;
 			productReference = 16F4C05D292A95D300BBDB18 /* Expenses.app */;
 			productType = "com.apple.product-type.application";
@@ -256,9 +326,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					16C7F9C52A4F0F5700ABC76C = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 16F4C05C292A95D200BBDB18;
+					};
 					16F4C05C292A95D200BBDB18 = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -273,16 +347,27 @@
 				Base,
 			);
 			mainGroup = 16F4C054292A95D200BBDB18;
+			packageReferences = (
+				16AFA90B2A43343A00D9B8FF /* XCRemoteSwiftPackageReference "DateHelper" */,
+			);
 			productRefGroup = 16F4C05E292A95D300BBDB18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				16F4C05C292A95D200BBDB18 /* Expenses */,
+				16C7F9C52A4F0F5700ABC76C /* ExpensesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		16C7F9C42A4F0F5700ABC76C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		16F4C05B292A95D200BBDB18 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +380,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		16C7F9C22A4F0F5700ABC76C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16C7F9C92A4F0F5700ABC76C /* ExpensesTests.swift in Sources */,
+				16C7F9D02A4F11EF00ABC76C /* KeyboardDelegateTests.swift in Sources */,
+				16C7F9D22A4F16D400ABC76C /* MockKeyboardDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		16F4C059292A95D200BBDB18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -302,6 +397,8 @@
 				16F45BD42A35D94600AC5658 /* KeyboardDelegate.swift in Sources */,
 				167A0AC02A274A84009AA0B6 /* ExpenseEntity+CoreDataProperties.swift in Sources */,
 				16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */,
+				16F45BD82A3DD91A00AC5658 /* DurationInputView.swift in Sources */,
+				16BEFFAB2A44393A003FB113 /* DailyExpenses.swift in Sources */,
 				167A0ABF2A274A84009AA0B6 /* ExpenseEntity+CoreDataClass.swift in Sources */,
 				167A0AB12A254460009AA0B6 /* View+Corners.swift in Sources */,
 				16A1B4C12A2CCDE900DF1DF8 /* EmptyDataSceneAssembly.swift in Sources */,
@@ -329,6 +426,7 @@
 				1640EAB9292D612D007A0650 /* ExpensesListView.swift in Sources */,
 				167A0AB32A25E5F8009AA0B6 /* StorageService.swift in Sources */,
 				16A1B4CB2A2DD98D00DF1DF8 /* Expense.swift in Sources */,
+				16CE6CEA2A5429A800A3B041 /* ProgressView.swift in Sources */,
 				16F45BD02A320A6A00AC5658 /* KeyboardView.swift in Sources */,
 				167A0AC22A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift in Sources */,
 			);
@@ -336,7 +434,70 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		16C7F9CB2A4F0F5700ABC76C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16F4C05C292A95D200BBDB18 /* Expenses */;
+			targetProxy = 16C7F9CA2A4F0F5700ABC76C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		16C7F9CC2A4F0F5700ABC76C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 43CRT824P5;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockyTurtle.ExpensesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expenses.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Expenses";
+			};
+			name = Debug;
+		};
+		16C7F9CD2A4F0F5700ABC76C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 43CRT824P5;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockyTurtle.ExpensesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Expenses.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Expenses";
+			};
+			name = Release;
+		};
 		16F4C069292A95D300BBDB18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -468,7 +629,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,6 +640,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -502,7 +664,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +675,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -522,6 +685,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		16C7F9CE2A4F0F5700ABC76C /* Build configuration list for PBXNativeTarget "ExpensesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16C7F9CC2A4F0F5700ABC76C /* Debug */,
+				16C7F9CD2A4F0F5700ABC76C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		16F4C058292A95D200BBDB18 /* Build configuration list for PBXProject "Expenses" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -541,6 +713,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		16AFA90B2A43343A00D9B8FF /* XCRemoteSwiftPackageReference "DateHelper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/melvitax/DateHelper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		16AFA90C2A43343A00D9B8FF /* DateHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 16AFA90B2A43343A00D9B8FF /* XCRemoteSwiftPackageReference "DateHelper" */;
+			productName = DateHelper;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		167A0AAC2A252EC2009AA0B6 /* DataModel.xcdatamodeld */ = {
