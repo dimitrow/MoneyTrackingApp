@@ -19,6 +19,7 @@ protocol ExpensesListViewModelInput {
 protocol ExpensesListViewModelOutput {
 
     var spentToday: String { get set }
+    var leftover: String { get set }
     var pastExpenses: [DailyExpenses] { get }
     var spendingProgressBinding: Binding<Double> { get }
     var intervalAmount: String { get set }
@@ -37,6 +38,7 @@ class ExpensesListViewModel: ExpensesListViewModelType {
     @Published var spentToday: String = "0.00"
     @Published var intervalAmount: String = ""
     @Published var spentInTotal: String = ""
+    @Published var leftover: String = ""
 
     @Published var spendingProgress: Double = 0.0
     var spendingProgressBinding: Binding<Double> {
@@ -47,7 +49,7 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         }
     }
 
-    var isUserSaving: Bool = false
+    var isUserSaving: Bool = true
     var saved: String = "0.00"
     var dailyLimit: String = ""
     var pastExpenses: [DailyExpenses] = []
@@ -73,25 +75,26 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         storageService
             .intervalUpdated
             .sink { [weak self] _ in
-                if let interval = self?.storageService.fetchCurrentInterval() {
-                    self?.updateData(for: interval)
-                }
+                guard let self = self else { return }
+                let interval = self.storageService.fetchCurrentInterval()
+                self.updateData(for: interval)
             }
             .store(in: &disposables)
     }
 
-    private func updateData(for interval: Interval) {
-        self.interval = interval
-        self.pastExpenses = interval.pastExpenses
-        self.previousExpenses = calculateExpenses(interval.pastExpenses.flatMap({$0.expenses}))
+    private func updateData(for updatedInterval: Interval) {
+        interval = updatedInterval
+        pastExpenses = interval.pastExpenses
+        previousExpenses = calculateExpenses(interval.pastExpenses.flatMap({$0.expenses}))
 
         let todayExpenses = calculateExpenses(interval.currentExpenses)
-        self.spentToday = String(format: "%.2f", todayExpenses)
-        self.intervalAmount = String(format: "%.2f", interval.amount)
-        self.spentInTotal = String(format: "%.2f", todayExpenses + self.previousExpenses)
-        self.dailyLimit = String(format: "%.2f", interval.dailyLimit)
-        self.spendingProgress = (todayExpenses + self.previousExpenses) / interval.amount
-        determineSavings()
+        spentToday = String(format: "%.2f", todayExpenses)
+        intervalAmount = String(format: "%.2f", interval.amount)
+        spentInTotal = String(format: "%.2f", todayExpenses + previousExpenses)
+        dailyLimit = String(format: "%.2f", interval.dailyLimit)
+        spendingProgress = (todayExpenses + previousExpenses) / interval.amount
+        leftover = String(format: "%.2f", interval.amount - todayExpenses - previousExpenses)
+        determineSavings(for: interval)
     }
 
     private func calculateExpenses(_ expenses: [Expense]) -> Double {
@@ -101,14 +104,14 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         return fullExpenses
     }
 
-    private func determineSavings() {
+    private func determineSavings(for interval: Interval) {
         guard let daysPassed = Date().since(interval.timeStamp, in: .day) else {
             return
         }
         let grantedAmount = interval.dailyLimit * Double(daysPassed)
         let savings = grantedAmount - previousExpenses
-        self.saved = String(format: "%.2f", abs(savings))
-        self.isUserSaving = savings > 0 ? true : false
+        saved = String(format: "%.2f", abs(savings))
+        isUserSaving = savings > 0 ? true : false
     }
 
     func addRecord() {

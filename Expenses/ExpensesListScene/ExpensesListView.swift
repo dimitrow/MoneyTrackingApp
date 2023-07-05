@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-private let bottomHeightMin: CGFloat = 48.0
+private let bottomHeightMin: CGFloat = 64.0
 private let bottomHeightMax: CGFloat = 360.0
 
 struct ExpensesListView<Model: ExpensesListViewModelType>: View {
@@ -32,10 +32,28 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
         }
     }
 
+    var sceneBackground: some View {
+        Color.black
+    }
+
+    var inputView: some View {
+        HStack(spacing: 0.0) {
+            Spacer()
+            Text("\(viewModel.amount)")
+                .frame(height: 60)
+                .font(.system(size: 64,
+                              weight: .medium))
+                .foregroundColor(.eaKeyFontColor)
+                .background(Color.red)
+                .padding(.trailing, 32)
+                .padding(.bottom, 12)
+        }
+    }
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Color.black
+                sceneBackground
                 VStack(spacing: 2.0) {
                     ZStack{
                         Color.eaBackground
@@ -49,7 +67,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                             Text(viewModel.spentInTotal)
                                                 .font(.system(size: 16, weight: .semibold))
                                             Text("of")
-                                                .font(.system(size: 11, weight: .regular))
+                                                .font(.system(size: 12, weight: .regular))
                                             Text(viewModel.intervalAmount)
                                                 .font(.system(size: 14, weight: .medium))
                                         }
@@ -61,33 +79,30 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                                 .padding(.leading, 48) //104
                                 Spacer()
                                 VStack(alignment: .trailing) {
+                                    Text("You have:")
+                                        .font(.system(size: 14, weight: .regular))
+                                    Text("\(viewModel.leftover)")
+                                        .font(.system(size: 30, weight: .bold))
                                     Text("bis \(viewModel.interval.endDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
-                                        .font(.system(size: 24, weight: .bold))
+                                        .font(.system(size: 14, weight: .regular))
                                     if viewModel.isUserSaving {
                                         Text("saved: \(viewModel.saved)")
                                             .foregroundColor(.green)
+                                            .font(.system(size: 18, weight: .medium))
                                     } else {
                                         Text("spent over: \(viewModel.saved)")
                                             .foregroundColor(.red)
+                                            .font(.system(size: 18, weight: .medium))
                                     }
+                                    Divider()
                                     Text("spent today: \(viewModel.spentToday)")
                                     Text("of: \(viewModel.dailyLimit)")
                                 }
-                                .padding(.trailing, 16)
+                                .padding(.trailing, 22)
                             }
                             .frame(height: 160)
                             Divider()
-                            ScrollView(.vertical, showsIndicators: false) {
-                                VStack(spacing: 2.0) {
-                                    ForEach(viewModel.pastExpenses, id: \.id) { expense in
-                                        dailyExpensesView(expense)
-                                        .onTapGesture {
-                                            viewModel.navigateToExpenseDetails(expense)
-                                        }
-                                    }
-                                    footerView(viewModel.interval)
-                                }
-                            }
+                            expensesList(viewModel.pastExpenses)
                         }
                     }
                     .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
@@ -106,26 +121,35 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                             .padding(.top, 10)
                             Spacer()
                             VStack(spacing: 0.0) {
-                                HStack(spacing: 0.0) {
-                                    Spacer()
-                                    Text("\(viewModel.amount)")
-                                        .frame(height: 60)
-                                        .font(.system(size: 64,
-                                                      weight: .medium))
-                                        .foregroundColor(.eaKeyFontColor)
-                                        .background(Color.red)
-                                        .padding(.trailing, 32)
-                                        .padding(.bottom, 12)
-                                }
+                                inputView
                                 KeyboardView(delegate: viewModel)
                                     .padding(.bottom, 19)
                             }
                             Spacer()
                         }
                     }
+                    .cornerRadius(8, corners: [.topLeft, .topRight])
                 }
             }
             .background(Color.eaBackground)
+        }
+        .navigationTitle("Current Expenses")
+        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+        .ignoresSafeArea(.all, edges: .bottom)
+    }
+
+    @ViewBuilder
+    func expensesList(_ expenses: [DailyExpenses]) -> some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 2.0) {
+                ForEach(expenses, id: \.id) { expense in
+                    dailyExpensesView(expense)
+                    .onTapGesture {
+                        viewModel.navigateToExpenseDetails(expense)
+                    }
+                }
+                footerView(viewModel.interval)
+            }
         }
     }
 
@@ -148,7 +172,6 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                         .frame(width: 8)
                         .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
                 }
-
                 Text(String(format: "%.2f", expense.dailyAmount))
                     .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
                 Spacer()

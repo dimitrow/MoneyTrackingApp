@@ -19,12 +19,10 @@ struct ProgressView: View {
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
-                    AngularGradient(
-                        gradient: Gradient(colors: colors),
-                        center: .center,
-                        startAngle: .degrees(0),
-                        endAngle: .degrees(360 * progress - 3)
-                    ),
+                    AngularGradient(gradient: Gradient(colors: progress > 0.3 ? colors : [Color.eaMainBlue]),
+                                    center: .center,
+                                    startAngle: .degrees(0),
+                                    endAngle: .degrees(360 * progress - 3)),
                     style: StrokeStyle(lineWidth: 16, lineCap: .round)
                 )
                 .rotationEffect(.degrees(90))

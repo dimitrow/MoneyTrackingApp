@@ -115,7 +115,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
     private func createNewInterval() {
 
         guard let newIntervalAmount = Double(amount),
-                let newIntervalDuration = Int16(intervalDuration) else {
+              let newIntervalDuration = Int16(intervalDuration) else {
             showAlert(with: .missingIntervalData)
             return
         }
@@ -165,7 +165,8 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
             return
         }
         storageService.createInterval(interval) { [weak self] in
-            self?.routeToExpensesList()
+            guard let self = self else { return }
+            self.routeToExpensesList()
         }
     }
 
