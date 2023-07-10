@@ -14,6 +14,7 @@ protocol ExpensesListViewModelInput {
     func addRecord()
     func navigateToExpenseDetails(_ expense: DailyExpenses)
     func removeRecord(_ expense: Expense)
+    func updateData()
 }
 
 protocol ExpensesListViewModelOutput {
@@ -66,7 +67,6 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         self.storageService = storageService
         self.router = router
         self.interval = self.storageService.fetchCurrentInterval()
-
         updateData(for: self.interval)
         observeInterval()
     }
@@ -80,6 +80,10 @@ class ExpensesListViewModel: ExpensesListViewModelType {
                 self.updateData(for: interval)
             }
             .store(in: &disposables)
+    }
+
+    func updateData() {
+        updateData(for: interval)
     }
 
     private func updateData(for updatedInterval: Interval) {

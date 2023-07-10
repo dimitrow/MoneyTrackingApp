@@ -9,31 +9,46 @@ import SwiftUI
 
 private let bottomHeightMin: CGFloat = 64.0
 private let bottomHeightMax: CGFloat = 360.0
+private let basicVSpacing: CGFloat = 0.0
 
-struct ExpensesListView<Model: ExpensesListViewModelType>: View {
+private let mainTilesCornerRadius: CGFloat = 12.0
+private let mainTilesVSpacing: CGFloat = 2.0
 
-    @ObservedObject var viewModel: Model
+private let summaryInfoCornerRadius: CGFloat = 16.0
+private let summaryInfoFrameHeight: CGFloat = 160.0
+
+//private let controlBorderWidth: CGFloat = 2.0
+
+struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
+
+    @ObservedObject var viewModel: ViewModel
 
     @State var bottomHeight: CGFloat = bottomHeightMin
+    @State var isKeyboardDragging: Bool = false
+    @State var bottomSheetOpacity: Double = 0.0
 
-    var settingsButton: some View {
-        Button(action: {
-
-        }) {
-            Image(systemName: "gearshape")
-        }
-    }
-
-    var editButton: some View {
-        Button(action: {
-
-        }) {
-            Image(systemName: "pencil.circle")
-        }
-    }
+//    var settingsButton: some View {
+//        Button(action: {
+//
+//        }) {
+//            Image(systemName: "gearshape")
+//        }
+//    }
+//
+//    var editButton: some View {
+//        Button(action: {
+//
+//        }) {
+//            Image(systemName: "pencil.circle")
+//        }
+//    }
 
     var sceneBackground: some View {
         Color.black
+    }
+
+    var keybordHandle: some View {
+        isKeyboardDragging ? Image.keyboardHandleActive : Image.keyboardHandle
     }
 
     var inputView: some View {
@@ -43,8 +58,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 .frame(height: 60)
                 .font(.system(size: 64,
                               weight: .medium))
-                .foregroundColor(.eaKeyFontColor)
-                .background(Color.red)
+                .foregroundColor(.eaPrimaryText)
                 .padding(.trailing, 32)
                 .padding(.bottom, 12)
         }
@@ -52,113 +66,181 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                sceneBackground
-                VStack(spacing: 2.0) {
-                    ZStack{
-                        Color.eaBackground
-                        VStack(spacing: 0.0) {
-                            HStack {
-                                VStack(spacing: 0.0) {
-                                    Spacer()
-                                    ZStack {
-                                        ProgressView(progress: viewModel.spendingProgressBinding)
-                                        VStack {
-                                            Text(viewModel.spentInTotal)
-                                                .font(.system(size: 16, weight: .semibold))
-                                            Text("of")
-                                                .font(.system(size: 12, weight: .regular))
-                                            Text(viewModel.intervalAmount)
-                                                .font(.system(size: 14, weight: .medium))
-                                        }
+            let sceneHeight = geometry.size.height
+            if sceneHeight > 0 {
+                ZStack {
+                    sceneBackground
+                    VStack(spacing: mainTilesVSpacing) {
+                        ZStack{
+                            Color.eaBackground
+                            VStack(spacing: basicVSpacing) {
+                                SummaryInfoView(viewModel: viewModel)
+//                                summaryInfoView(for: viewModel)
+                                expensesList(for: viewModel)
+                            }
+                        }
+                        .cornerRadius(mainTilesCornerRadius, corners: [.bottomLeft, .bottomRight])
+                        .frame(height: sceneHeight - bottomHeight)
+                        ZStack{
+                            Color.eaBackground
+                            VStack(spacing: basicVSpacing) {
+                                keybordHandle
+                                    .padding(.top, 10)
+                                    .gesture(
+                                        DragGesture()
+                                            .onChanged { value in
+                                                print(abs(value.velocity.height))
+                                                handleDragGestureChange(value.translation.height)
+                                            }
+                                            .onEnded { _ in
+                                                handleDragGestureEnd()
+                                            }
+                                    )
+                                    .onTapGesture {
+                                        bottomHeight = bottomHeightMax
+                                        bottomSheetOpacity = 1.0
                                     }
-                                    Color.eaMainBlue
-                                        .frame(width: 4.0, height: 8)
-                                }
-                                .frame(width: 128)
-                                .padding(.leading, 48) //104
                                 Spacer()
-                                VStack(alignment: .trailing) {
-                                    Text("You have:")
-                                        .font(.system(size: 14, weight: .regular))
-                                    Text("\(viewModel.leftover)")
-                                        .font(.system(size: 30, weight: .bold))
-                                    Text("bis \(viewModel.interval.endDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
-                                        .font(.system(size: 14, weight: .regular))
-                                    if viewModel.isUserSaving {
-                                        Text("saved: \(viewModel.saved)")
-                                            .foregroundColor(.green)
-                                            .font(.system(size: 18, weight: .medium))
-                                    } else {
-                                        Text("spent over: \(viewModel.saved)")
-                                            .foregroundColor(.red)
-                                            .font(.system(size: 18, weight: .medium))
-                                    }
-                                    Divider()
-                                    Text("spent today: \(viewModel.spentToday)")
-                                    Text("of: \(viewModel.dailyLimit)")
+                                VStack(spacing: basicVSpacing) {
+                                    inputView
+                                    KeyboardView(delegate: viewModel)
+                                        .padding(.bottom, 20)
                                 }
-                                .padding(.trailing, 22)
+                                .opacity(bottomSheetOpacity)
+                                Spacer()
                             }
-                            .frame(height: 160)
-                            Divider()
-                            expensesList(viewModel.pastExpenses)
                         }
+                        .cornerRadius(mainTilesCornerRadius, corners: [.topLeft, .topRight])
                     }
-                    .cornerRadius(8, corners: [.bottomLeft, .bottomRight])
-                    .frame(height: geometry.size.height - bottomHeight)
-                    ZStack{
-                        Color.eaBackground
-                        VStack(spacing: 0.0) {
-                            Button {
-                                withAnimation(.interactiveSpring(response: 0.3,
-                                                                 dampingFraction: 0.7)) {
-                                    bottomHeight = bottomHeight == bottomHeightMax ? bottomHeightMin : bottomHeightMax
-                                }
-                            } label: {
-                                Text(bottomHeight == bottomHeightMax ? "Hide" : "Add new")
-                            }
-                            .padding(.top, 10)
-                            Spacer()
-                            VStack(spacing: 0.0) {
-                                inputView
-                                KeyboardView(delegate: viewModel)
-                                    .padding(.bottom, 19)
-                            }
-                            Spacer()
-                        }
-                    }
-                    .cornerRadius(8, corners: [.topLeft, .topRight])
                 }
+                .background(Color.eaBackground)
             }
-            .background(Color.eaBackground)
+        }
+        .onAppear {
+            viewModel.updateData()
         }
         .navigationTitle("Current Expenses")
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea(.all, edges: .bottom)
     }
 
+    private func handleDragGestureChange(_ translation: CGFloat) {
+        bottomHeight = bottomHeight - translation
+        withAnimation{
+            isKeyboardDragging = true
+        }
+        if bottomHeight > bottomHeightMin * 1.5 {
+            bottomSheetOpacity = bottomHeight / bottomHeightMax
+        } else {
+            bottomSheetOpacity = 0.0
+        }
+        if bottomHeight > bottomHeightMax * 1.1 {
+            bottomHeight = bottomHeightMax * 1.1
+        }
+    }
+
+    private func handleDragGestureEnd() {
+        withAnimation(.spring(response: 0.15, dampingFraction: 0.99)) {
+            isKeyboardDragging = false
+            if bottomHeight > bottomHeightMax * 0.75 {
+                bottomHeight = bottomHeightMax
+                bottomSheetOpacity = 1.0
+            } else {
+                bottomHeight = bottomHeightMin
+                bottomSheetOpacity = 0.0
+            }
+        }
+    }
+
+    //MARK: - view builders
+
+//    @ViewBuilder
+//    func summaryInfoView(for model: Model) -> some View {
+//        ZStack {
+//            Color.eaMainBlue.opacity(0.1)
+//            HStack(alignment: .center, spacing: 8.0) {
+//                VStack(spacing: 0.0) {
+//                    Spacer()
+//                    ZStack {
+//                        ProgressView(progress: model.spendingProgressBinding)
+//                        VStack {
+//                            Text(model.spentInTotal)
+//                                .font(.system(size: 16, weight: .semibold))
+//                            Text("of")
+//                                .font(.system(size: 12, weight: .regular))
+//                            Text(model.intervalAmount)
+//                                .font(.system(size: 14, weight: .medium))
+//                        }
+//                    }
+//                    Color.eaMainBlue
+//                        .frame(width: 4.0, height: 8)
+//                }
+//                .frame(width: 128)
+//                .padding(.leading, 32)
+//                VStack(alignment: .trailing) {
+//                    HStack {
+//                        Text("You have:")
+//                            .foregroundColor(.eaPrimaryText)
+//                            .font(.system(size: 16, weight: .semibold))
+//                        Spacer()
+//                    }
+//                    Text("\(model.leftover)")
+//                        .foregroundColor(.eaPrimaryText)
+//                        .font(.system(size: 30, weight: .bold))
+//                        .minimumScaleFactor(0.4)
+//                    Text("bis \(model.interval.endDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
+//                        .font(.system(size: 14, weight: .regular))
+//                    if model.isUserSaving {
+//                        Text("saved: \(model.saved)")
+//                            .foregroundColor(.green)
+//                            .font(.system(size: 18, weight: .medium))
+//                            .minimumScaleFactor(0.4)
+//                    } else {
+//                        Text("spent over: \(model.saved)")
+//                            .foregroundColor(.red)
+//                            .font(.system(size: 16, weight: .medium))
+//                            .minimumScaleFactor(0.4)
+//                    }
+//                    Text("spent today: \(model.spentToday)")
+//                        .foregroundColor(.eaPrimaryText)
+//                        .font(.system(size: 16, weight: .semibold))
+//                        .minimumScaleFactor(0.4)
+//                    Text("of: \(model.dailyLimit)")
+//                        .foregroundColor(.eaPrimaryText)
+//                        .font(.system(size: 12, weight: .regular))
+//                }
+//                .padding(.trailing, 16)
+//            }
+//        }
+//        .clipShape(
+//            RoundedRectangle(cornerRadius: summaryInfoCornerRadius)
+//        )
+//        .frame(height: summaryInfoFrameHeight)
+//        .padding(.horizontal, 16)
+//    }
+
     @ViewBuilder
-    func expensesList(_ expenses: [DailyExpenses]) -> some View {
+    func expensesList(for model: ViewModel) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 2.0) {
-                ForEach(expenses, id: \.id) { expense in
-                    dailyExpensesView(expense)
+                ForEach(model.pastExpenses, id: \.id) { expense in
+                    dailyExpensesView(expense, of: model.interval)
                     .onTapGesture {
-                        viewModel.navigateToExpenseDetails(expense)
+                        model.navigateToExpenseDetails(expense)
                     }
                 }
-                footerView(viewModel.interval)
+                footerView(model.interval)
             }
         }
     }
 
     @ViewBuilder
-    func dailyExpensesView(_ expense: DailyExpenses) -> some View {
+    func dailyExpensesView(_ expense: DailyExpenses, of interval: Interval) -> some View {
         ZStack {
             Color.eaBackground
             HStack(spacing: 4.0) {
                 Text("\(expense.timeStamp.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                    .foregroundColor(.eaPrimaryText)
                     .font(.system(size: 12,
                                   weight: .medium))
                     .frame(maxWidth: 84.0)
@@ -170,12 +252,13 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                         .foregroundColor(.eaMainBlue)
                     Circle()
                         .frame(width: 8)
-                        .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
+                        .foregroundColor(expense.dailyAmount > interval.dailyLimit ? Color.red : Color.green)
                 }
                 Text(String(format: "%.2f", expense.dailyAmount))
-                    .foregroundColor(expense.dailyAmount > viewModel.interval.dailyLimit ? Color.red : Color.green)
+                    .foregroundColor(expense.dailyAmount > interval.dailyLimit ? Color.red : Color.green)
                 Spacer()
                 Image(systemName: "chevron.right")
+                    .foregroundColor(.eaPrimaryText)
             }
             .frame(height: 48.0)
             .padding(.horizontal, 16.0)
@@ -186,6 +269,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
     func footerView(_ interval: Interval) -> some View {
         HStack(spacing: 4.0) {
             Text("\(interval.startDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                .foregroundColor(.eaPrimaryText)
                 .font(.system(size: 12,
                               weight: .medium))
                 .frame(maxWidth: 84)
@@ -199,6 +283,7 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
                 Circle().frame(width: 8).foregroundColor(.white)
             }
             Text("Anfang des Zeitraums")
+                .foregroundColor(.eaPrimaryText)
                 .font(.system(size: 12,
                               weight: .medium))
             Spacer()
@@ -208,15 +293,15 @@ struct ExpensesListView<Model: ExpensesListViewModelType>: View {
     }
 }
 
-struct ExpensesListView_Previews: PreviewProvider {
-
-    static let storageService = StorageService(storageManager: StorageManager.shared,
-                                        storageMapper: StorageMapper())
-    static let viewModel = ExpensesListViewModel(storageService: storageService,
-                                                 router: Router())
-    static var previews: some View {
-        NavigationStack {
-            ExpensesListView(viewModel: viewModel)
-        }
-    }
-}
+//struct ExpensesListView_Previews: PreviewProvider {
+//
+//    static let storageService = StorageService(storageManager: StorageManager.shared,
+//                                        storageMapper: StorageMapper())
+//    static let viewModel = ExpensesListViewModel(storageService: storageService,
+//                                                 router: Router())
+//    static var previews: some View {
+//        NavigationStack {
+//            ExpensesListView(viewModel: viewModel)
+//        }
+//    }
+//}

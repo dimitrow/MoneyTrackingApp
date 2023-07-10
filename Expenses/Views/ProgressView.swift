@@ -28,7 +28,7 @@ struct ProgressView: View {
                 .rotationEffect(.degrees(90))
             Circle()
                 .trim(from: 0.25, to: 0.75)
-                .frame(width: 15, height: 15)
+                .frame(width: 14, height: 14)
                 .foregroundColor(Color.eaMainBlue)
                 .offset(y: 64)
                 .rotationEffect(Angle.degrees(360 * progress))
