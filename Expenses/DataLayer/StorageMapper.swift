@@ -28,7 +28,8 @@ final class StorageMapper: StorageMapperType {
         }
         let expenses = entity.expensesArray.map({mapExpenseEntityToModel($0)})
         let currentExpenses = expenses.filter({$0.timeStamp.compare(.isToday)})
-        let pastExpenses = mapExpensesToDaily(expenses: expenses.filter({!$0.timeStamp.compare(.isToday)}))
+//        let pastExpenses = mapExpensesToDaily(expenses: expenses.filter({!$0.timeStamp.compare(.isToday)}))
+        let pastExpenses = mapExpensesToDaily(expenses: expenses)
 
         let interval = Interval(id: intervalID,
                                 amount: entity.amount,

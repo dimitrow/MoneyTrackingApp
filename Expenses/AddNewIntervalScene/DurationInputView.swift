@@ -13,7 +13,7 @@ private let labelHorizontalPadding: CGFloat = 18.0
 private let titleHorizontalPadding: CGFloat = 8.0
 private let titleTopPadding: CGFloat = 12.0
 
-private let sliderRange: ClosedRange = 10.0...30.0
+private let sliderRange: ClosedRange = 7.0...30.0
 private let sliderHorizontalPadding: CGFloat = 24.0
 private let sliderBottomPadding: CGFloat = 10.0
 

@@ -24,8 +24,8 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
     @ObservedObject var viewModel: ViewModel
 
     @State var bottomHeight: CGFloat = bottomHeightMin
-    @State var isKeyboardDragging: Bool = false
-    @State var bottomSheetOpacity: Double = 0.0
+    @State var isHandleActive: Bool = false
+    @State var keyboardOpacity: Double = 0.0
 
 //    var settingsButton: some View {
 //        Button(action: {
@@ -48,7 +48,7 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
     }
 
     var keybordHandle: some View {
-        isKeyboardDragging ? Image.keyboardHandleActive : Image.keyboardHandle
+        isHandleActive ? Image.keyboardHandleActive : Image.keyboardHandle
     }
 
     var inputView: some View {
@@ -74,8 +74,8 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
                         ZStack{
                             Color.eaBackground
                             VStack(spacing: basicVSpacing) {
-                                SummaryInfoView(viewModel: viewModel)
-//                                summaryInfoView(for: viewModel)
+//                                SummaryInfoView(viewModel: viewModel)
+                                summaryView()
                                 expensesList(for: viewModel)
                             }
                         }
@@ -89,7 +89,6 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
                                     .gesture(
                                         DragGesture()
                                             .onChanged { value in
-                                                print(abs(value.velocity.height))
                                                 handleDragGestureChange(value.translation.height)
                                             }
                                             .onEnded { _ in
@@ -97,8 +96,11 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
                                             }
                                     )
                                     .onTapGesture {
-                                        bottomHeight = bottomHeightMax
-                                        bottomSheetOpacity = 1.0
+                                        handleExpandOnTap()
+//                                        withAnimation{
+//                                            bottomHeight = bottomHeightMax
+//                                            bottomSheetOpacity = 1.0
+//                                        }
                                     }
                                 Spacer()
                                 VStack(spacing: basicVSpacing) {
@@ -106,7 +108,7 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
                                     KeyboardView(delegate: viewModel)
                                         .padding(.bottom, 20)
                                 }
-                                .opacity(bottomSheetOpacity)
+                                .opacity(keyboardOpacity)
                                 Spacer()
                             }
                         }
@@ -127,97 +129,37 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
     private func handleDragGestureChange(_ translation: CGFloat) {
         bottomHeight = bottomHeight - translation
         withAnimation{
-            isKeyboardDragging = true
+            isHandleActive = true
         }
-        if bottomHeight > bottomHeightMin * 1.5 {
-            bottomSheetOpacity = bottomHeight / bottomHeightMax
+        if bottomHeight > bottomHeightMin * 1.3 {
+            keyboardOpacity = (bottomHeight - bottomHeightMin * 1.3) / bottomHeightMax
+            print(keyboardOpacity)
         } else {
-            bottomSheetOpacity = 0.0
+            keyboardOpacity = 0.0
         }
-        if bottomHeight > bottomHeightMax * 1.1 {
-            bottomHeight = bottomHeightMax * 1.1
+        if bottomHeight > bottomHeightMax * 1.05 {
+            bottomHeight = bottomHeightMax * 1.05
         }
     }
 
     private func handleDragGestureEnd() {
         withAnimation(.spring(response: 0.15, dampingFraction: 0.99)) {
-            isKeyboardDragging = false
-            if bottomHeight > bottomHeightMax * 0.75 {
-                bottomHeight = bottomHeightMax
-                bottomSheetOpacity = 1.0
-            } else {
-                bottomHeight = bottomHeightMin
-                bottomSheetOpacity = 0.0
-            }
+            isHandleActive = false
+            bottomHeight = bottomHeight > bottomHeightMax * 0.6 ? bottomHeightMax : bottomHeightMin
+            keyboardOpacity = bottomHeight > bottomHeightMax * 0.6 ? 1.0 : 0.0
+        }
+    }
+
+    private func handleExpandOnTap() {
+        isHandleActive = true
+        withAnimation(.spring(response: 0.15, dampingFraction: 0.99)) {
+            bottomHeight = bottomHeight == bottomHeightMax ? bottomHeightMin : bottomHeightMax
+            keyboardOpacity = bottomHeight > bottomHeightMax * 0.75 ? 1.0 : 0.0
+            isHandleActive = false
         }
     }
 
     //MARK: - view builders
-
-//    @ViewBuilder
-//    func summaryInfoView(for model: Model) -> some View {
-//        ZStack {
-//            Color.eaMainBlue.opacity(0.1)
-//            HStack(alignment: .center, spacing: 8.0) {
-//                VStack(spacing: 0.0) {
-//                    Spacer()
-//                    ZStack {
-//                        ProgressView(progress: model.spendingProgressBinding)
-//                        VStack {
-//                            Text(model.spentInTotal)
-//                                .font(.system(size: 16, weight: .semibold))
-//                            Text("of")
-//                                .font(.system(size: 12, weight: .regular))
-//                            Text(model.intervalAmount)
-//                                .font(.system(size: 14, weight: .medium))
-//                        }
-//                    }
-//                    Color.eaMainBlue
-//                        .frame(width: 4.0, height: 8)
-//                }
-//                .frame(width: 128)
-//                .padding(.leading, 32)
-//                VStack(alignment: .trailing) {
-//                    HStack {
-//                        Text("You have:")
-//                            .foregroundColor(.eaPrimaryText)
-//                            .font(.system(size: 16, weight: .semibold))
-//                        Spacer()
-//                    }
-//                    Text("\(model.leftover)")
-//                        .foregroundColor(.eaPrimaryText)
-//                        .font(.system(size: 30, weight: .bold))
-//                        .minimumScaleFactor(0.4)
-//                    Text("bis \(model.interval.endDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
-//                        .font(.system(size: 14, weight: .regular))
-//                    if model.isUserSaving {
-//                        Text("saved: \(model.saved)")
-//                            .foregroundColor(.green)
-//                            .font(.system(size: 18, weight: .medium))
-//                            .minimumScaleFactor(0.4)
-//                    } else {
-//                        Text("spent over: \(model.saved)")
-//                            .foregroundColor(.red)
-//                            .font(.system(size: 16, weight: .medium))
-//                            .minimumScaleFactor(0.4)
-//                    }
-//                    Text("spent today: \(model.spentToday)")
-//                        .foregroundColor(.eaPrimaryText)
-//                        .font(.system(size: 16, weight: .semibold))
-//                        .minimumScaleFactor(0.4)
-//                    Text("of: \(model.dailyLimit)")
-//                        .foregroundColor(.eaPrimaryText)
-//                        .font(.system(size: 12, weight: .regular))
-//                }
-//                .padding(.trailing, 16)
-//            }
-//        }
-//        .clipShape(
-//            RoundedRectangle(cornerRadius: summaryInfoCornerRadius)
-//        )
-//        .frame(height: summaryInfoFrameHeight)
-//        .padding(.horizontal, 16)
-//    }
 
     @ViewBuilder
     func expensesList(for model: ViewModel) -> some View {
@@ -239,7 +181,7 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
         ZStack {
             Color.eaBackground
             HStack(spacing: 4.0) {
-                Text("\(expense.timeStamp.toString(format: .custom("MMM d, yyyy")) ?? "")")
+                Text("\(expense.timeStamp.toString(format: .custom(dateFormat)) ?? "")")
                     .foregroundColor(.eaPrimaryText)
                     .font(.system(size: 12,
                                   weight: .medium))
@@ -268,7 +210,7 @@ struct ExpensesListView<ViewModel: ExpensesListViewModelType>: View {
     @ViewBuilder
     func footerView(_ interval: Interval) -> some View {
         HStack(spacing: 4.0) {
-            Text("\(interval.startDate.toString(format: .custom("MMM d, yyyy")) ?? "")")
+            Text("\(interval.startDate.toString(format: .custom(dateFormat)) ?? "")")
                 .foregroundColor(.eaPrimaryText)
                 .font(.system(size: 12,
                               weight: .medium))

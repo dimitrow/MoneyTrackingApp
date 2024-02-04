@@ -30,7 +30,7 @@ class RouterViewModel: RouterViewModelType {
     }
 
     func determineInitialScene() {
-        if storageService.isUserHasData() {
+        if storageService.isUserHasActiveData() {
             router.setInitial(scene: .main)
         } else {
             router.setInitial(scene: .empty)

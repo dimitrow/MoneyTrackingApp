@@ -21,7 +21,8 @@
 		167A0AC22A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */; };
 		167A0AC72A277C6F009AA0B6 /* StorageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */; };
 		167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */; };
-		168BD7CA2A5C9EE600495D84 /* SummaryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168BD7C92A5C9EE600495D84 /* SummaryInfoView.swift */; };
+		168BD7CA2A5C9EE600495D84 /* ExpensesListView+SummaryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168BD7C92A5C9EE600495D84 /* ExpensesListView+SummaryInfoView.swift */; };
+		168BD7CE2A5D923900495D84 /* SharedConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168BD7CD2A5D923900495D84 /* SharedConstants.swift */; };
 		16A1B4B52A2877BD00DF1DF8 /* RouterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */; };
 		16A1B4B72A287D0100DF1DF8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B62A287D0100DF1DF8 /* Router.swift */; };
 		16A1B4B92A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A1B4B82A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift */; };
@@ -77,7 +78,8 @@
 		167A0ABE2A274A84009AA0B6 /* IntervalEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntervalEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		167A0AC62A277C6F009AA0B6 /* StorageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageMapper.swift; sourceTree = "<group>"; };
 		167A0AC82A27CE00009AA0B6 /* EmptyDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataViewModel.swift; sourceTree = "<group>"; };
-		168BD7C92A5C9EE600495D84 /* SummaryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryInfoView.swift; sourceTree = "<group>"; };
+		168BD7C92A5C9EE600495D84 /* ExpensesListView+SummaryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpensesListView+SummaryInfoView.swift"; sourceTree = "<group>"; };
+		168BD7CD2A5D923900495D84 /* SharedConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedConstants.swift; sourceTree = "<group>"; };
 		16A1B4B42A2877BD00DF1DF8 /* RouterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterView.swift; sourceTree = "<group>"; };
 		16A1B4B62A287D0100DF1DF8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		16A1B4B82A287EDE00DF1DF8 /* ExpensesListSceneAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListSceneAssembly.swift; sourceTree = "<group>"; };
@@ -200,9 +202,18 @@
 		168BD7CB2A5CA37200495D84 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				168BD7C92A5C9EE600495D84 /* SummaryInfoView.swift */,
+				168BD7C92A5C9EE600495D84 /* ExpensesListView+SummaryInfoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		168BD7CC2A5D921300495D84 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				167A0AAF2A25443A009AA0B6 /* Extensions */,
+				168BD7CD2A5D923900495D84 /* SharedConstants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		16A1B4C22A2D13B100DF1DF8 /* AddNewIntervalScene */ = {
@@ -273,7 +284,7 @@
 				16A1B4C92A2DD96600DF1DF8 /* Models */,
 				16F4C060292A95D300BBDB18 /* ExpensesApp.swift */,
 				167A0ACA2A27D050009AA0B6 /* AppCoordinator */,
-				167A0AAF2A25443A009AA0B6 /* Extensions */,
+				168BD7CC2A5D921300495D84 /* Utilities */,
 				167A0AAB2A252E77009AA0B6 /* DataLayer */,
 				16A1B4C22A2D13B100DF1DF8 /* AddNewIntervalScene */,
 				1640EABA292EB79A007A0650 /* ExpensesListScene */,
@@ -423,8 +434,9 @@
 				167A0AB82A273DDA009AA0B6 /* BaseDataModel.swift in Sources */,
 				167A0AAE2A252EC2009AA0B6 /* DataModel.xcdatamodeld in Sources */,
 				16F45BD62A3B2F2500AC5658 /* KeyView.swift in Sources */,
+				168BD7CE2A5D923900495D84 /* SharedConstants.swift in Sources */,
 				16A1B4BD2A29CED500DF1DF8 /* RouterAssembly.swift in Sources */,
-				168BD7CA2A5C9EE600495D84 /* SummaryInfoView.swift in Sources */,
+				168BD7CA2A5C9EE600495D84 /* ExpensesListView+SummaryInfoView.swift in Sources */,
 				16F45BD22A33466400AC5658 /* AppErrors.swift in Sources */,
 				167A0AC92A27CE00009AA0B6 /* EmptyDataViewModel.swift in Sources */,
 				16A1B4C62A2D145700DF1DF8 /* AddNewIntervalViewModel.swift in Sources */,
@@ -633,10 +645,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Expenses/Preview Content\"";
-				DEVELOPMENT_TEAM = 43CRT824P5;
+				DEVELOPMENT_TEAM = 68GR5VG56T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -651,8 +664,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rockyturtle.Expenses;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockyturtle.aufgebe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -668,10 +682,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Expenses/Preview Content\"";
-				DEVELOPMENT_TEAM = 43CRT824P5;
+				DEVELOPMENT_TEAM = 68GR5VG56T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
@@ -688,6 +703,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockyturtle.Expenses;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

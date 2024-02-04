@@ -15,19 +15,27 @@ struct EmptyDataView<Model: EmptyDataViewModelType>: View {
         VStack {
             Text("NO DATA")
             Button {
-                viewModel.routeFurther()
+                viewModel.createBrandNew()
             } label: {
                 Text("Add new Interval")
                     .padding()
+            }
+            if viewModel.hasLastUsedInterval {
+                Button {
+                    viewModel.useLast()
+                } label: {
+                    Text("Use Last")
+                        .padding()
+                }
             }
         }
     }
 }
 
-struct EmptyDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            EmptyDataView(viewModel: EmptyDataViewModel(router: Router()))
-        }
-    }
-}
+//struct EmptyDataView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            EmptyDataView(viewModel: EmptyDataViewModel(router: Router()))
+//        }
+//    }
+//}

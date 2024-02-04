@@ -115,7 +115,7 @@ class ExpensesListViewModel: ExpensesListViewModelType {
         let grantedAmount = interval.dailyLimit * Double(daysPassed)
         let savings = grantedAmount - previousExpenses
         saved = String(format: "%.2f", abs(savings))
-        isUserSaving = savings > 0 ? true : false
+        isUserSaving = savings >= 0 ? true : false
     }
 
     func addRecord() {

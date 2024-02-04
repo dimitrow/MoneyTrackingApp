@@ -19,5 +19,3 @@ extension Color {
     static let eaMainBlue = Color("eaMainBlue")
     static let eaPrimaryText = Color("eaPrimaryText")
 }
-
-

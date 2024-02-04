@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProgressView: View {
 
-    var colors: [Color] = [Color.eaMainBlue.opacity(0.7), Color.eaMainBlue]
+    var colors: [Color] = [Color.eaMainBlue.opacity(0.5), Color.eaMainBlue]
     @Binding var progress: Double
 
     var body: some View {

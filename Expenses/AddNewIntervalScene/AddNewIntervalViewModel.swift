@@ -127,7 +127,7 @@ class AddNewIntervalViewModel: AddNewIntervalViewModelType {
 
         let timeStamp = Date()
         guard let startDate = timeStamp.adjust(for: .startOfDay),
-              let endDate = startDate.offset(.day, value: Int(newIntervalDuration))?.adjust(for: .endOfDay) else {
+              let endDate = startDate.offset(.day, value: Int(newIntervalDuration - 1))?.adjust(for: .endOfDay) else {
             fatalError()
         }
 

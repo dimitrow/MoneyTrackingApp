@@ -11,6 +11,8 @@ class EmptyDataSceneAssembly: SceneAssembly {
 
     @ViewBuilder
     func getScene(_ router: Router) -> some View {
-        EmptyDataView(viewModel: EmptyDataViewModel(router: router))
+        let storageService = StorageService(storageManager: StorageManager.shared,
+                                             storageMapper: StorageMapper())
+        EmptyDataView(viewModel: EmptyDataViewModel(router: router, storageService: storageService))
     }
 }
